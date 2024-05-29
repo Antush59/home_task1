@@ -1,0 +1,16 @@
+
+˜	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜¨òüÿÿÿÿ8¶³ğ­ü1J$3277b065-8ee5-45a7-abeb-955eaa3ec345
+¡	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÜØââúÿÿÿÿ8·³ğ­ü1J$c4590bce-c1b0-4168-b569-16552b2a25ba
+£
+java:S1192 "[Define a constant instead of duplicating this literal "Ğ’Ñ‹Ğ¸Ğ³Ñ€Ğ°Ğ» Ğ¸Ğ³Ñ€Ğ¾Ğº " 6 times.(§—Ì§øÿÿÿÿ8º³ğ­ü1J$ac1bee22-b8a3-441c-ac29-1b19a5e848be
+r	java:S106"+Replace this use of System.out by a logger.(Å²¢„øÿÿÿÿ8®Åğ­ü1J$82ea43a2-2a6a-47d0-a747-aa36c753ad4c
+r	java:S106 "+Replace this use of System.out by a logger.(§—Ì§øÿÿÿÿ8¯Åğ­ü1J$a86ff93e-63a5-4e20-96e1-d4772eff7e6a
+m	java:S106""+Replace this use of System.out by a logger.(Éôû™8°Åğ­ü1J$9bf9bf1b-42f0-4f3e-9164-150f61203216
+m	java:S106&"+Replace this use of System.out by a logger.(Éôû™8±Åğ­ü1J$b96cbc39-a327-4d84-a0ac-29b9524cc71e
+r	java:S106("+Replace this use of System.out by a logger.(§—Ì§øÿÿÿÿ8²Åğ­ü1J$3fb10d88-a82d-4bac-9a59-ba9e903adb13
+r	java:S106,"+Replace this use of System.out by a logger.(§—Ì§øÿÿÿÿ8²Åğ­ü1J$a0ebd0a5-e9dc-453f-bf65-f7e2620492c9
+m	java:S106."+Replace this use of System.out by a logger.(Éôû™8³Åğ­ü1J$be823143-d541-46e6-be19-6260f6cda0b5
+m	java:S1062"+Replace this use of System.out by a logger.(ô»é²8´Åğ­ü1J$59703d74-da13-4f79-b2da-896716a7d540
+r	java:S1063"+Replace this use of System.out by a logger.(Åè²÷ùÿÿÿÿ8Ø˜ó­ü1J$ae148217-97f1-4221-bbe1-2b7de0fb12db
+w
+java:S1128"4Remove this unused import 'org.w3c.dom.ls.LSOutput'.(Ò½¾Š8¼”ò­ü1J$6423c673-dfeb-4821-a499-2ec6bd468249
