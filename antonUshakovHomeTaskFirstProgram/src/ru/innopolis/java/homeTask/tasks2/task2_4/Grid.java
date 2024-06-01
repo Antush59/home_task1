@@ -16,16 +16,10 @@ public class Grid {
         scanner.nextLine();
         System.out.print("Введите повторяемый элемент сетки: ");
         String element = scanner.nextLine();
-        String [][] grid = new String[countColumns][countStrings];
         System.out.println();
         for (int i = 0; i < countColumns; i++) {
             for (int j = 0; j < countStrings ; j++) {
-                grid[i][j] = element;
-            }
-        }
-        for (String[] strings : grid) {
-            for (String string : strings) {
-                System.out.print(string);
+                System.out.print(element);
             }
             System.out.println();
         }

@@ -19,7 +19,7 @@ public class Arithmetic {
         System.out.println("Сумма двух целых чисел: " + (firstNumber + secondNumber));
         System.out.println("Разность двух целых чисел: " + (firstNumber - secondNumber));
         System.out.println("Произведение из двух целых чисел: " + (firstNumber * secondNumber));
-        System.out.println("Среднее из двух целых чисел: " + (double)((firstNumber + secondNumber)/2));
+        System.out.println("Среднее значение из двух целых чисел: " + (double)((firstNumber + secondNumber)/2));
         System.out.println("Расстояние двух целых чисел: " + ("Расстояние двух целых чисел: " +
                 Math.abs(firstNumber - secondNumber)));
         System.out.println("Максимальное целое число: " + Math.max(firstNumber, secondNumber));
