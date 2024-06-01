@@ -1,4 +1,4 @@
-package ru.innopolis.java.homeTask.lessonFirstProgram;
+package ru.innopolis.java.homeTask.tasks1.task1_1;
 
 
 /**
