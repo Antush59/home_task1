@@ -2,6 +2,10 @@ package ru.innopolis.java.homeTask.tasks2.task2_4;
 
 import java.util.Scanner;
 
+/**
+ * Задача 4*. Напишите программу на Java для печати сетки из заданныхэлементов.
+ */
+
 public class Grid {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -25,6 +29,5 @@ public class Grid {
             }
             System.out.println();
         }
-//        System.out.println(Arrays.deepToString(grid));
     }
 }
