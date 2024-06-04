@@ -1,19 +1,7 @@
 
-v
-Fsrc/ru/innopolis/java/homeTask/lessonFirstProgram/OutputOfNumbers.java,6\6\667ef4bdff116d14a3e046068c3ebbfd1a60fcb9
-n
->src/ru/innopolis/java/homeTask/lessonFirstProgram/GameRPS.java,5\9\59f8255a28b7ac315fefde8a141ddd5c66c96f18
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
-~
-Nsrc/ru/innopolis/java/homeTask/lessonFirstProgram/Task1_1/OutputOfNumbers.java,3\2\32ad555315178e27be7867fd36f0a44aeecfc103
-v
-Fsrc/ru/innopolis/java/homeTask/lessonFirstProgram/Task1_2/GameRPS.java,e\7\e796f379e3af60a0d0d7875a9ecb7e0f21a58b4a
-s
-Csrc/ru/innopolis/java/homeTask/lesson1/Task1_1/OutputOfNumbers.java,d\a\da6d6963114a76d5cc18342beb635e79f4bebf5d
-k
-;src/ru/innopolis/java/homeTask/lesson1/Task1_2/GameRPS.java,c\a\ca13410abcf3e505cd73e225627097d9ef823f24
 r
 Bsrc/ru/innopolis/java/homeTask/Tasks1/Task1_1/OutputOfNumbers.java,9\7\97e57fab0bfacddd2381ff97d83239449ef96b47
 j
