@@ -18,6 +18,7 @@ public class OutputTask {
         for (int i = count; i != 0; i--) {
             resultStrings += word;
         }
-        System.out.println("Псоле повторения " + count + " раз: " + resultStrings);
+        System.out.println("Число повторения " + count + " раз: ");
+        System.out.println(resultStrings);
     }
 }
