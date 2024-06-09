@@ -38,3 +38,5 @@ h
 8src/ru/innopolis/java/homeTask/task4/task4_2/Arrows.java,4\0\408ef57f20be7bed5f29dc7f552018ca9880e263
 n
 >src/ru/innopolis/java/homeTask/task4/tsk4_3/ArrangeString.java,e\d\ed3fec7d4437523f1197107f1c1a307aec1b2f1f
+d
+4src/ru/innopolis/java/additionalTask/Palindrome.java,f\a\fa888ef6483655aa880ca8718bde8e5aa70d616e

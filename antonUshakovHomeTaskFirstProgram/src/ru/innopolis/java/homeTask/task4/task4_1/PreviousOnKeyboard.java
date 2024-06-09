@@ -24,7 +24,7 @@ public class PreviousOnKeyboard {
     public static void charKeyboard(char letter) {
         String keyboardAlphabet = "qwertyuiopasdfghjklzxcvbnmq";
         char[] charArray = keyboardAlphabet.toCharArray();
-        for (int i = 0; i < charArray.length; i++) {
+        for (int i = 1; i < charArray.length; i++) {
             if (letter == charArray[i]) {
                 System.out.println("Предыдущий символ с клавиатуры: " + charArray[i - 1]);
             }
