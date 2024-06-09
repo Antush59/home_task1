@@ -22,7 +22,14 @@ public class ArrangeString {
         Arrays.sort(charArray1);
         Arrays.sort(charArray2);
 
-        System.out.println(charArray1);
-        System.out.println(charArray2);
+        String arrowString1 = String.valueOf(charArray1);
+        String arrowString2 = String.valueOf(charArray2);
+        String result = arrowString1 + " " + arrowString2;
+
+        System.out.println("Начальная страница:");
+        System.out.println(string);
+
+        System.out.println("Итоговый результат:");
+        System.out.println(result);
     }
 }
