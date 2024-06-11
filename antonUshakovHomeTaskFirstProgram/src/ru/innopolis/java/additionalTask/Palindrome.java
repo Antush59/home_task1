@@ -20,7 +20,7 @@ public class Palindrome {
     }
 
     public static String onlyLetters (String str) {
-        return str.replaceAll("[^A-Za-zА-Яа-я]", "");
+        return str.replaceAll("[^a-zа-я]", "");
     }
 
     public static String reverseString(String str) {

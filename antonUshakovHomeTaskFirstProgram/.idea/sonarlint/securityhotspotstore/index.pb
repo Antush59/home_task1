@@ -28,10 +28,6 @@ g
 -src/ru/innopolis/java/homeTask/task3/App.java,a\1\a167e6f20d33f98bcaec8c1f13f7d262b2959296
 ]
 -src/ru/innopolis/java/homeTask/task3/Task.txt,8\d\8dc0edc94791b4a89ca088f96ae6877516e24aa4
-a
-1src/ru/innopolis/java/homeTask/task4/Task4_1.java,a\7\a75a3b9fabfc7f2133921809b9a2d8c58a4c89e4
-l
-<src/ru/innopolis/java/homeTask/task4/PreviousOnKeyboard.java,4\9\499d0d9e8b357dc0802a32e305bc78067e32de38
 t
 Dsrc/ru/innopolis/java/homeTask/task4/task4_1/PreviousOnKeyboard.java,c\f\cf57a00932a676fbc6fb6885d32f030cd2a22d1d
 h
@@ -40,3 +36,7 @@ n
 >src/ru/innopolis/java/homeTask/task4/tsk4_3/ArrangeString.java,e\d\ed3fec7d4437523f1197107f1c1a307aec1b2f1f
 d
 4src/ru/innopolis/java/additionalTask/Palindrome.java,f\a\fa888ef6483655aa880ca8718bde8e5aa70d616e
+i
+9src/ru/innopolis/java/additionalTask/EnglishAlphabet.java,a\8\a8d938c154c38819a5d3f1d1fecc76714f7f48e4
+T
+$antonUshakovHomeTaskFirstProgram.iml,5\1\515e3c874e93756534e92a708fe2180243d393b2

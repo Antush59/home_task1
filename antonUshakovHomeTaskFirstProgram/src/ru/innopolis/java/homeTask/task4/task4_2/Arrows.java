@@ -4,10 +4,11 @@ package ru.innopolis.java.homeTask.task4.task4_2;
  * Задача2.Задана последовательность, состоящая только из символов ‘>’, ‘<’ и ‘-‘. Требуется найти количество
  * стрел, которые спрятаны в этой последовательности. Стрелы – это подстроки вида ‘>>-->’ и ‘<--<<’.
  */
+
 public class Arrows {
     public static void main(String[] args) {
 
-        String value = ">>-->-><<<><><>>--><--<<>>-->>><><--<<--<<>>>>----->>--><<---<<--<<<-<<>>--->>-->";
+        String value = ">>-->-><<<><><>>--><--<<>>-->>><><--<<--<<>>>>----->>--><<---<<--<<<-<<>>-->>-->";
         String arrow1 = ">>-->";
         String arrow2 = "<--<<";
         int countArrow1 = countReplace(value, arrow1);
@@ -19,7 +20,7 @@ public class Arrows {
     }
 
     //    Метод, для подсчета встречающейся строки (arrow) в выражении (value)
-    public static int countReplace(String value, String arrow) {
+    private static int countReplace(String value, String arrow) {
 
         int count = 0;
         int index = 0;
