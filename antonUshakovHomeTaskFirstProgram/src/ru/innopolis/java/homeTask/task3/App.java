@@ -8,25 +8,31 @@ public class App {
         Television television1 = new Television("SAMSUNG", 105);
         Television television2 = new Television("SONY", 115);
 
-        usingTV(television1);
+        usingTelevision(television1);
 
         System.out.println();
 
-        usingTV(television2);
+        usingTelevision(television2);
     }
 
 //Создали метод для реализации работы с телевизором
-    private static void usingTV(Television television) {
+    private static void usingTelevision(Television television) {
         Scanner scanner = new Scanner(System.in);
-        int powerButton;
 
-        System.out.println(television.toString());
+        System.out.println(television);
 
         System.out.println("Для включения телевизора напишите 1");
-        powerButton = scanner.nextInt();
-        television.pushPowerButton(powerButton);
+        television.pushPowerButton(scanner.nextInt());
+        scanner.nextLine();
 
-        System.out.println("Выберите канал");
-        television.choiceNumberChanel();
+        System.out.println("Выбор канала телепередачи");
+        if (television.isPowerButton()){
+            System.out.println("Выберите канал телепередачи:");
+            while (true) {
+                if (television.choiceNumberChanel(scanner.nextInt())) break;
+            }
+        } else {
+            System.out.println("Компьютер выключен, выбор канала не возможен!");
+        }
     }
 }

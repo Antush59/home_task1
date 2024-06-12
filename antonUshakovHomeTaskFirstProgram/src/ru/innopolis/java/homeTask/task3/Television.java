@@ -1,7 +1,5 @@
 package ru.innopolis.java.homeTask.task3;
 
-import java.util.Scanner;
-
 public class Television {
 
     private String companyName;
@@ -27,19 +25,15 @@ public class Television {
 
     //Выбор канала от 1 до 400. Исключен выбор канала, если телевизор выключен.
     //Исключен выбор канала больше 400.
-    public void choiceNumberChanel () {
-        Scanner scanner = new Scanner(System.in);
-        numberChanel = scanner.nextInt();
-        if (powerButton == true) {
-            if (numberChanel <= 400) {
+    public boolean choiceNumberChanel (int numberChanel) {
+        this.numberChanel = numberChanel;
+            if (numberChanel <= 400 && numberChanel > 0) {
                 System.out.println("Включен " + numberChanel + " канал");
+                return true;
             } else {
                 System.out.println("Выберите канал от 1 до 400");
-                choiceNumberChanel();
+                return false;
             }
-        } else {
-            System.out.println("Телевизор не включен");
-        }
     }
 
     public String getCompanyName() {
