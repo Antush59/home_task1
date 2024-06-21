@@ -11,6 +11,7 @@ public class Palindrome {
 
         Scanner sc = new Scanner(System.in);
 
+        System.out.println("Введите строку");
         String firstString = sc.nextLine().toLowerCase();
         String onlyLetters = onlyLetters(firstString).intern();
 
