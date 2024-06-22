@@ -1,4 +1,4 @@
-package ru.innopolis.java.homework.homework05Addition;
+package ru.innopolis.java.homeworks.homework05Addition;
 
 import java.util.ArrayList;
 import java.util.Comparator;

@@ -1,4 +1,4 @@
-package ru.innopolis.java.homework.homework04.task4_2;
+package ru.innopolis.java.homeworks.homework04.task4_2;
 
 /**
  * Задача2.Задана последовательность, состоящая только из символов ‘>’, ‘<’ и ‘-‘. Требуется найти количество
