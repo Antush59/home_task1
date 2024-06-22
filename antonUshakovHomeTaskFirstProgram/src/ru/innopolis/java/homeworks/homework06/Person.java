@@ -62,14 +62,4 @@ public class Person {
                 ", productPackage=" + productPackage +
                 '}';
     }
-
-//    //    проверяем, что имя должно быть у покупателя
-//    public static boolean checkName(String name) {
-//        return name != "";
-//    }
-//
-//    //    Проверяем положительнцю сумму у покупателя
-//    public static boolean checkMoney(Integer money) {
-//        return money >= 0;
-//    }
 }

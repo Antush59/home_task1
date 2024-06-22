@@ -21,16 +21,8 @@ public class Product {
         return productName;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
     public int getPrice() {
         return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
     }
 
     @Override
@@ -52,15 +44,5 @@ public class Product {
                 "productName='" + productName + '\'' +
                 ", price=" + price +
                 '}';
-    }
-
-    //    Проверяем есть ли название у продукта
-    private static boolean checkProductName(String name) {
-        return name != "";
-    }
-
-    //    Проверяем, что цена указана не отрицательной
-    private static boolean checkPrice(Integer price) {
-        return price >= 0;
     }
 }
