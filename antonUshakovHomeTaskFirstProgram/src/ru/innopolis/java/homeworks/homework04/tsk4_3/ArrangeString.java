@@ -1,4 +1,4 @@
-package ru.innopolis.java.homework.homework04.tsk4_3;
+package ru.innopolis.java.homeworks.homework04.tsk4_3;
 
 import java.util.Arrays;
 

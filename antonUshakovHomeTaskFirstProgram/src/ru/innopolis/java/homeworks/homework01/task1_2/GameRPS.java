@@ -1,4 +1,4 @@
-package ru.innopolis.java.homework.homework01.task1_2;
+package ru.innopolis.java.homeworks.homework01.task1_2;
 
 import java.util.Random;
 
