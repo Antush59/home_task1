@@ -3,9 +3,7 @@ package ru.innopolis.java.homeworks.homework07;
 import java.time.LocalDate;
 import java.util.*;
 
-/**
- * Нужно сделать проверку после добавления
- */
+
 public class App {
 
     public static void main(String[] args) {
@@ -17,7 +15,7 @@ public class App {
         Scanner scanner = new Scanner(System.in);
 
 //        Вводим с консоли данные о продуктах
-//        Если с консоли введо "END", то цикл прерывается.
+//        Если с консоли введено "END", то цикл прерывается.
 //        Для ввода данных используется формат [Название продукта] = [Цена продукта],
 //        [если есть, то скидкапродукта]
         while (true) {
