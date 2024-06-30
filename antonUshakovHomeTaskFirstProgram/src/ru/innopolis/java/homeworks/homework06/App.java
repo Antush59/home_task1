@@ -44,8 +44,8 @@ public class App {
         }
     }
 
-//    Ввод с консоли данных о покупателе и товаре. Поиск их в списке, вызов метода checkPriceAndMoney, добавление
-//    в корзину покупателя товар, который подошел
+//    Ввод с консоли данных о покупателе и товаре. Поиск их в списке, вызов метода checkPriceAndMoney,
+//    добавление в корзину покупателя товар, который подошел
     private static void inputPersonAndProducts(List<Person> personList, List<Product> productList) {
         while (true) {
             System.out.println("Введите данные о покупке. Если их нет, введите END");
@@ -60,16 +60,19 @@ public class App {
 
                     if (Objects.equals(personString, person.getName())) {
                         for (Product product : productList) {
-                            String productString = scannerPerson.substring(scannerPerson.indexOf("-") + 1);
+                            String productString = scannerPerson.substring(scannerPerson
+                                    .indexOf("-") + 1);
 
                             if (Objects.equals(productString, product.getProductName())) {
 
                                 if (checkAllSituation(personList, productList)) {
                                 } else if (checkPriceAndMoney(person, product)) {
                                     person.productPacket(productString);
-                                    System.out.println("Покупатель " + person.getName() + " купил " + product.getProductName());
+                                    System.out.println("Покупатель " + person.getName() + " купил "
+                                            + product.getProductName());
                                 } else {
-                                    System.out.println(person.getName() + " не может себе позволить " + product.getProductName());
+                                    System.out.println(person.getName() + " не может себе позволить "
+                                            + product.getProductName());
                                 }
                             }
                         }
@@ -96,7 +99,8 @@ public class App {
                 } else if (person.getProductPackage().isEmpty()) {
                     System.out.println(person.getName() + " - Ничего не куплено");
                 } else {
-                    System.out.println(person.getName() + " - " + listProduct.replace("[", "").replace("]", ""));
+                    System.out.println(person.getName() + " - " + listProduct
+                            .replace("[", "").replace("]", ""));
                 }
             }
         }
@@ -110,7 +114,8 @@ public class App {
     public static boolean checkAllSituation(List<Person> persons, List<Product> products) {
         for (Person person : persons) {
             for (Product product : products) {
-                return person.getName() == "" || person.getAmountOfMoney() < 0 || product.getProductName() == "" || product.getPrice() < 0;
+                return person.getName() == "" || person.getAmountOfMoney() < 0
+                        || product.getProductName() == "" || product.getPrice() < 0;
             }
         }
         return false;
