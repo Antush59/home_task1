@@ -38,22 +38,27 @@ public class App {
         }
 
 //        Проверяем пусто или нет массив, если нет, то выполняем метод printAll
-        if (products.isEmpty()){
+        if (products.isEmpty()) {
             System.out.println("Продукты не внесены.");
-        } else if (discountProducts.isEmpty()){
         } else {
-            printAll(products, discountProducts);
+            printAllProducts(products);
+        }
+
+        if (discountProducts.isEmpty()) {
+            System.out.println("Продукты не внесены.");
+        } else {
+            printAllDiscountProducts(discountProducts);
         }
     }
 
-//    Из массивов строк, полученный с консоли, создаем объект класса Product
+    //    Из массивов строк, полученный с консоли, создаем объект класса Product
     public static Product productParse(String[] value) {
         String name = value[0];
         Integer price = Integer.parseInt(value[1]);
         return new Product(name, price);
     }
 
-//    Проверяем продукт на правильное имя и цену
+    //    Проверяем продукт на правильное имя и цену
     public static boolean checkProduct(Product product) {
         if (product.checkProductNameInt(product.getProductName())) {
             System.out.println("Недопустимое имя продукта!");
@@ -67,7 +72,7 @@ public class App {
         return false;
     }
 
-//    Из массивов строк, полученный с консоли, создаем объект класса DiscountProduct
+    //    Из массивов строк, полученный с консоли, создаем объект класса DiscountProduct
     public static DiscountProduct discountParse(String[] value) {
         String name = value[0];
         String[] priceAndDiscount = value[1].split(", ");
@@ -78,7 +83,7 @@ public class App {
         return new DiscountProduct(name, price, discount, timeDiscount);
     }
 
-//    Проверяем продукт на правильное имя, цену и скидку
+    //    Проверяем продукт на правильное имя, цену и скидку
     public static boolean checkProductDiscount(DiscountProduct productDiscount) {
         if (productDiscount.checkProductNameInt(productDiscount.getProductName())) {
             System.out.println("Недопустимое имя продукта!");
@@ -94,8 +99,8 @@ public class App {
         return false;
     }
 
-//    Печать названия всех продуктов обычных и акционных
-    public static void printAll(List<Product> products, List<DiscountProduct> discountProducts) {
+//    Печать названия всех обычных продуктов
+    public static void printAllProducts(List<Product> products) {
         int count = 0;
         String[] listNameProduct = new String[products.size()];
         for (Product product : products) {
@@ -105,16 +110,20 @@ public class App {
         System.out.print("Обычные продукты: ");
         System.out.println(Arrays.toString(listNameProduct)
                 .replace("[", "").replace("]", ""));
+    }
 
-        count = 0;
+    //    Печать названия всех акционных продуктов
+    public static void printAllDiscountProducts(List<DiscountProduct> discountProducts) {
+
+        int count = 0;
         String[] listDiscountProduct = new String[discountProducts.size()];
         for (DiscountProduct discountProduct : discountProducts) {
             listDiscountProduct[count] = discountProduct.getProductName();
-            count ++;
+            count++;
         }
         System.out.print("\nАкционные продукты: ");
-        System.out.println(Arrays.toString(listDiscountProduct)
-                .replace("[", "").replace("]", ""));
+        System.out.println(Arrays.toString(listDiscountProduct).replace("[", "")
+                .replace("]", ""));
 
 
     }
