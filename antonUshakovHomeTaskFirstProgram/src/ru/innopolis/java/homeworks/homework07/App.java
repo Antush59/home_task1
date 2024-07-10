@@ -32,7 +32,7 @@ public class App {
     }
 
 //        Вводим с консоли данные о продуктах
-//        Если с консоли введо "END", то цикл прерывается.
+//        Если с консоли введено "END", то цикл прерывается.
 //        Для ввода данных используется формат [Название продукта] = [Цена продукта],
 //        [если есть, то скидка продукта]
     public static void enteringProducts(List<Product> products, List<DiscountProduct> discountProducts) {
