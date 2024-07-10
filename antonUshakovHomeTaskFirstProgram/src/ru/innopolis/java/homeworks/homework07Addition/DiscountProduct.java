@@ -1,4 +1,4 @@
-package ru.innopolis.java.homeworks.homework07;
+package ru.innopolis.java.homeworks.homework07Addition;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -8,22 +8,24 @@ public class DiscountProduct extends Product {
     private int discount;
     private final LocalDate endDiscountTime;
 
-    public DiscountProduct(String productName, int productPrice, int discount, LocalDate discountTime) {
-        super(productName, productPrice);
+    public DiscountProduct(String productName, Integer productPrice, Integer discount,
+                           LocalDate discountTime, Boolean adultProduct) {
+        super(productName, productPrice, adultProduct);
         this.discount = discount;
         this.endDiscountTime = discountTime.plusDays(timeOfAction(discount));
     }
 
-    //    Из массивов строк, полученный с консоли, создаем объект класса DiscountProduct
+
     public static DiscountProduct of(String[] value) {
         String name = value[0];
-        String[] priceAndDiscount = value[1].split(", ");
-        int productPrice = Integer.parseInt(priceAndDiscount[0]);
-        int discount = Integer.parseInt(priceAndDiscount[1].substring(0,
-                priceAndDiscount[1].lastIndexOf("%")));
+        String[] infoDiscount = value[1].split(", ");
+        int productPrice = Integer.parseInt(infoDiscount[0]);
+        int discount = Integer.parseInt(infoDiscount[1].substring(0,
+                infoDiscount[1].lastIndexOf("%")));
+        boolean adultProduct = Boolean.parseBoolean(infoDiscount[2]);
         LocalDate timeDiscount = LocalDate.now();
         if (validateDiscountProduct(name, productPrice, discount)) {
-            return new DiscountProduct(name, productPrice, discount, timeDiscount);
+            return new DiscountProduct(name, productPrice, discount, timeDiscount, adultProduct);
         }
         return null;
     }
@@ -49,8 +51,20 @@ public class DiscountProduct extends Product {
         return true;
     }
 
-    public boolean valueDiscount(Integer value) {
-        return 3 < value && value > 50;
+    private int getDiscount() {
+        if (getDiscountTime().isBefore(LocalDate.now())) {
+            if (discount <= 15 && discount >= 3) {
+                return (discount + 7);
+            } else if (discount > 15 && discount <= 30) {
+                return (discount + 5);
+            } else {
+                return (discount + 3);
+            }
+        } else return discount;
+    }
+
+    public LocalDate getDiscountTime() {
+        return endDiscountTime;
     }
 
     //    время действия скидки, в зависимости от размера скидки
@@ -62,30 +76,16 @@ public class DiscountProduct extends Product {
         } else return 2;
     }
 
-    //    проверка срока действия скидки
-    private Integer checkingDiscountForTime(LocalDate endDiscountTime, Integer discount) {
-        if (endDiscountTime.isBefore(LocalDate.now())) {
-            if (discount <= 15 && discount >= 3) {
-                return (discount + 7);
-            } else if (discount > 15 && discount <= 30) {
-                return (discount + 5);
-            } else return (discount + 3);
-        } else return discount;
-    }
-
-    public int getDiscount() {
-        return discount = checkingDiscountForTime(getDiscountTime(), discount);
-    }
-
-    public LocalDate getDiscountTime() {
-        return endDiscountTime;
+    @Override
+    public int getProductPrice() {
+        return productPrice - ((productPrice * getDiscount()) / 100);
     }
 
     @Override
     public String toString() {
         return "DiscountProduct{" +
-                "endDiscountTime=" + endDiscountTime +
                 ", discount=" + discount +
+                ", endDiscountTime=" + endDiscountTime +
                 "} " + super.toString();
     }
 

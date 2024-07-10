@@ -1,42 +1,47 @@
 package ru.innopolis.java.homeworks.homework07;
 
-import java.text.NumberFormat;
-import java.text.ParsePosition;
 import java.util.Objects;
 
-public class Product implements Checking{
+public class Product {
 
     private final String productName;
-    private final Integer productPrice;
+    private final int productPrice;
 
 
-    public Product(String productName, Integer productPrice) {
+    public Product(String productName, int productPrice) {
         this.productName = productName;
         this.productPrice = productPrice;
     }
 
+    //    Из массивов строк, полученный с консоли, создаем объект класса Product
+    public static Product of(String[] value) {
+        String name = value[0];
+        Integer price = Integer.parseInt(value[1]);
+        if (validateProduct(name, price)) {
+            return new Product(name, price);
+        }
+        return null;
+    }
+
+    //    Проверяем продукт на правильное имя и цену
+    private static boolean validateProduct(String name, int price) {
+        if (name.length() < 3) {
+            System.out.println("Недопустимое имя продукта!");
+            return false;
+        }
+        if (name.matches("\\d+")) {
+            System.out.println("Недопустимое имя продукта!");
+            return false;
+        }
+        if (price <= 0) {
+            System.out.println("Недопустимая стоимость продукта!");
+            return false;
+        }
+        return true;
+    }
+
     public String getProductName() {
         return productName;
-    }
-
-    public Integer getProductPrice() {
-        return productPrice;
-    }
-
-    @Override
-    public boolean checkProductName(String value) {
-        return value.length() < 3;
-    }
-
-    public boolean checkProductNameInt(String value) {
-        ParsePosition pos = new ParsePosition(0);
-        NumberFormat.getInstance().parse(value, pos);
-        return value.length() == pos.getIndex();
-    }
-
-    @Override
-    public boolean checkPrice(Integer price) {
-        return price <= 0;
     }
 
     @Override
@@ -51,11 +56,11 @@ public class Product implements Checking{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Product product)) return false;
-        return Objects.equals(getProductName(), product.getProductName()) && Objects.equals(getProductPrice(), product.getProductPrice());
+        return productPrice == product.productPrice && Objects.equals(productName, product.productName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getProductName(), getProductPrice());
+        return Objects.hash(productName, productPrice);
     }
 }
