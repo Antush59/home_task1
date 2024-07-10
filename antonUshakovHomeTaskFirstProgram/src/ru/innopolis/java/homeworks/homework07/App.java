@@ -19,7 +19,7 @@ public class App {
 
 //        Проверяем пусто или нет массив, если нет, то выполняем метод printAll
         if (products.isEmpty()) {
-            System.out.println("обычные продукты не внесены.");
+            System.out.println("Обычные продукты не внесены.");
         } else {
             printAllProducts(products, "Обычные продукты");
         }
@@ -37,6 +37,8 @@ public class App {
 //        [если есть, то скидка продукта]
     public static void enteringProducts(List<Product> products, List<DiscountProduct> discountProducts) {
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите данные продуктов в формате: \n" + "[Имя продукта] = [Цена продукта], " +
+                "[Скидка товара, если есть]");
         while (true) {
             System.out.println("Введите данные");
             String rawProduct = scanner.nextLine();
