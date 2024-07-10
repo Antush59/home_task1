@@ -4,58 +4,72 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-abstract class Person {
+public class Person {
 
     protected final String name;
-    protected Integer amountOfMoney;
-    protected List<String> productPackage = new ArrayList<>();
-    protected Integer age;
+    protected int amountOfMoney;
+    protected final List<String> productPackage;
+    protected final int age;
 
-    public Person(String name, Integer amountOfMoney, List<String> productPackage, Integer age) {
+    public Person(String name, int amountOfMoney, int age) {
         this.name = name;
         this.amountOfMoney = amountOfMoney;
-        this.productPackage = productPackage;
+        this.productPackage = new ArrayList<>();
         this.age = age;
     }
 
-    public void checkingAmountOfMoney(Product product) {
-
+    public boolean tryBuyProduct(Product product) {
+        return true;
     }
 
     public String getName() {
         return name;
     }
 
-    public Integer getAmountOfMoney() {
+    public int getAmountOfMoney() {
         return amountOfMoney;
-    }
-
-    public void setAmountOfMoney(Integer amountOfMoney) {
-        this.amountOfMoney = amountOfMoney;
     }
 
     public List<String> getProductPackage() {
         return productPackage;
     }
 
-    public Integer getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void productPacket(String productName) {
+    public void addProductToPacket(String productName) {
         productPackage.add(productName);
+    }
+
+    public static boolean validate(String name, int amount, int agePerson) {
+        if (Objects.equals(name, "")) {
+            System.out.println("Имя не может быть пустой строкой!");
+            return false;
+        } else if (amount < 0) {
+            System.out.println("Деньги не могут быть отрицательными!");
+            return false;
+        } else if (agePerson < 0) {
+            System.out.println("Возраст не может быть отрицательным!");
+            return false;
+        }
+        return true;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Person person)) return false;
-        return Objects.equals(getName(), person.getName()) && Objects.equals(getAge(), person.getAge());
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Person person)) {
+            return false;
+        }
+        return Objects.equals(name, person.name) && Objects.equals(age, person.age);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getAge());
+        return Objects.hash(name, age);
     }
 
     @Override
@@ -68,9 +82,4 @@ abstract class Person {
                 '}';
     }
 }
-/*
-Person p = map.get("name");
-if (p instance of Kid.class) {
-    ((Kid) p).tryBuyProduct(....)
-} else if (p in
- */
+
