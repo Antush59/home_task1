@@ -34,7 +34,7 @@ public class App {
         printAll(personList, productList);
     }
 
-//    Сравниваем количество денег у покупателя с ценой товара
+    //    Сравниваем количество денег у покупателя с ценой товара
     public static boolean checkPriceAndMoney(Person person, Product product) {
         if (person.getAmountOfMoney() < product.getPrice()) {
             return false;
@@ -44,7 +44,7 @@ public class App {
         }
     }
 
-//    Ввод с консоли данных о покупателе и товаре. Поиск их в списке, вызов метода checkPriceAndMoney,
+    //    Ввод с консоли данных о покупателе и товаре. Поиск их в списке, вызов метода checkPriceAndMoney,
 //    добавление в корзину покупателя товар, который подошел
     private static void inputPersonAndProducts(List<Person> personList, List<Product> productList) {
         while (true) {
@@ -65,7 +65,7 @@ public class App {
 
                             if (Objects.equals(productString, product.getProductName())) {
 
-                                if (checkAllSituation(personList, productList)) {
+                                if (validateParameters(person, product)) {
                                 } else if (checkPriceAndMoney(person, product)) {
                                     person.productPacket(productString);
                                     System.out.println("Покупатель " + person.getName() + " купил "
@@ -82,7 +82,7 @@ public class App {
         }
     }
 
-//    Вывод на косоль результатов вноса данных
+    //    Вывод на косоль результатов вноса данных
     public static void printAll(List<Person> personList, List<Product> productList) {
         for (Person person : personList) {
             for (Product product : productList) {
@@ -106,19 +106,14 @@ public class App {
         }
     }
 
-//    Проверка всех исключающих ситуаций:
+    //    Проверка всех исключающих ситуаций:
 //    1. Сумма у покупателя не может быть отрицательной
 //    2. Имя покупателя не может быть пустой строкой
 //    3. Цена продукта не может быть отрицательной
 //    4. Название продукта не может быть пустой строкой
-    public static boolean checkAllSituation(List<Person> persons, List<Product> products) {
-        for (Person person : persons) {
-            for (Product product : products) {
-                return Objects.equals(person.getName(), "") || person.getAmountOfMoney() < 0
-                        || Objects.equals(product.getProductName(), "") || product.getPrice() < 0;
-            }
-        }
-        return false;
+    public static boolean validateParameters(Person person, Product product) {
+        return Objects.equals(person.getName(), "") || person.getAmountOfMoney() < 0
+                || Objects.equals(product.getProductName(), "") || product.getPrice() < 0;
     }
 }
 

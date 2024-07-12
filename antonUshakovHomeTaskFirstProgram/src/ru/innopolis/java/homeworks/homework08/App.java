@@ -1,40 +1,97 @@
 package ru.innopolis.java.homeworks.homework08;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Scanner;
 
 public class App {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
-//        Строку из консоли конвертируем в данные класса Person
-        System.out.println("Введите список покупателей");
+        Path pathInput = Path.of("antonUshakovHomeTaskFirstProgram/src/ru/innopolis/java/homeworks/homework08/Input.txt");
+        Path pathOutput = Path.of("antonUshakovHomeTaskFirstProgram/src/ru/innopolis/java/homeworks/homework08/Output.txt");
+
+        List<String> strings = Files.readAllLines(pathInput, StandardCharsets.UTF_8);
+        List<String> listForOutput = new ArrayList<>();
+
+
+//        Строку из файла конвертируем в данные класса Person
         List<Person> personList = new ArrayList<>();
-        Scanner scanner = new Scanner(System.in);
-        String list = scanner.nextLine();
-        String[] listPersons = list.split("; ");
+        String personLine = strings.get(0);
+        if (personLine == null) {
+            String info = "Данные покупателей отсутствуют";
+            listForOutput.add(info);
+            return;
+        }
+        String[] listPersons = personLine.split("; ");
         for (String listPerson : listPersons) {
             Person currentPerson = new Person(listPerson.split(" = "));
             personList.add(currentPerson);
         }
 
-//        Строку из консоли конвертируем в данные класса Product
-        System.out.println("Введите список продуктов");
+//        Строку из файла конвертируем в данные класса Product
         List<Product> productList = new ArrayList<>();
-        String list2 = scanner.nextLine();
-        String[] listProducts = list2.split("; ");
+        String productLine = strings.get(1);
+        if (productLine == null) {
+            String info = "Данные продуктов отсутствуют";
+            listForOutput.add(info);
+            return;
+        }
+        String[] listProducts = productLine.split("; ");
         for (String listProduct : listProducts) {
             Product currentProduct = new Product(listProduct.split(" = "));
             productList.add(currentProduct);
         }
 
-        inputPersonAndProducts(personList, productList);
-        printAll(personList, productList);
+        inputPersonAndProducts(personList, productList, strings, listForOutput, pathOutput);
+        outputData(personList, productList, listForOutput, pathOutput);
     }
 
-//    Сравниваем количество денег у покупателя с ценой товара
+    //    Ввод с файла данных о покупателе и товаре. Поиск их в списке, вызов метода checkPriceAndMoney,
+//    добавление в корзину покупателя товар, который подошел
+
+    private static void inputPersonAndProducts(List<Person> personList, List<Product> productList, List<String> strings,
+                                               List<String> listForOutput, Path pathOutput) throws IOException {
+        String string;
+        for (int i = 2; i < strings.size(); i++) {
+            if (Objects.equals(strings.get(i), "END")) {
+                break;
+            }
+            string = strings.get(i);
+
+            for (Person person : personList) {
+                String personString = string.substring(0, string.indexOf("-"));
+
+                if (Objects.equals(personString, person.getName())) {
+                    for (Product product : productList) {
+                        String productString = string.substring(string
+                                .indexOf("-") + 1);
+
+                        if (Objects.equals(productString, product.getProductName())) {
+                            if (validateParameters(person, product)) {
+                            } else if (checkPriceAndMoney(person, product)) {
+                                person.addProductToPacket(productString);
+                                String info = "Покупатель " + person.getName() + " купил "
+                                        + product.getProductName();
+                                listForOutput.add(info);
+                            } else {
+                                String info = person.getName() + " не может себе позволить "
+                                        + product.getProductName();
+                                listForOutput.add(info);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        Files.write(pathOutput, listForOutput);
+    }
+
+    //    Сравниваем количество денег у покупателя с ценой товара
     public static boolean checkPriceAndMoney(Person person, Product product) {
         if (person.getAmountOfMoney() < product.getPrice()) {
             return false;
@@ -44,81 +101,52 @@ public class App {
         }
     }
 
-//    Ввод с консоли данных о покупателе и товаре. Поиск их в списке, вызов метода checkPriceAndMoney,
-//    добавление в корзину покупателя товар, который подошел
-    private static void inputPersonAndProducts(List<Person> personList, List<Product> productList) {
-        while (true) {
-            System.out.println("Введите данные о покупке. Если их нет, введите END");
-            Scanner sc = new Scanner(System.in);
-            String scannerPerson = sc.nextLine();
-
-            if (Objects.equals(scannerPerson, "END")) {
-                break;
-            } else {
-                for (Person person : personList) {
-                    String personString = scannerPerson.substring(0, scannerPerson.indexOf("-"));
-
-                    if (Objects.equals(personString, person.getName())) {
-                        for (Product product : productList) {
-                            String productString = scannerPerson.substring(scannerPerson
-                                    .indexOf("-") + 1);
-
-                            if (Objects.equals(productString, product.getProductName())) {
-
-                                if (checkAllSituation(personList, productList)) {
-                                } else if (checkPriceAndMoney(person, product)) {
-                                    person.productPacket(productString);
-                                    System.out.println("Покупатель " + person.getName() + " купил "
-                                            + product.getProductName());
-                                } else {
-                                    System.out.println(person.getName() + " не может себе позволить "
-                                            + product.getProductName());
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-//    Вывод на косоль результатов вноса данных
-    public static void printAll(List<Person> personList, List<Product> productList) {
+    //    Вывод данных в файл
+    public static void outputData(List<Person> personList, List<Product> productList,
+                                  List<String> listForOutput, Path pathOutput) throws IOException {
         for (Person person : personList) {
             for (Product product : productList) {
                 if (Objects.equals(product.getProductName(), "")) {
-                    System.out.println("Название продукта неможет быть пустой строкой");
+                    String info = "Название продукта неможет быть пустой строкой";
+                    listForOutput.add(info);
+                    break;
                 } else if (product.getPrice() < 0) {
-                    System.out.println("Стоимость продукта не может быть отрицательным числом");
+                    String info = "Стоимость продукта не может быть отрицательным числом";
+                    listForOutput.add(info);
+                    break;
                 }
                 String listProduct = person.getProductPackage().toString();
                 if (Objects.equals(person.getName(), "")) {
-                    System.out.println("Имя не может быть пустой строкой");
+                    String info = "Имя не может быть пустой строкой";
+                    listForOutput.add(info);
+                    break;
                 } else if (person.getAmountOfMoney() < 0) {
-                    System.out.println("Деньги не могут быть отрицательными");
+                    String info = "Деньги не могут быть отрицательными";
+                    listForOutput.add(info);
+                    break;
                 } else if (person.getProductPackage().isEmpty()) {
-                    System.out.println(person.getName() + " - Ничего не куплено");
+                    String info = person.getName() + " - Ничего не куплено";
+                    listForOutput.add(info);
+                    break;
                 } else {
-                    System.out.println(person.getName() + " - " + listProduct
-                            .replace("[", "").replace("]", ""));
+                    String info = person.getName() + " - " + listProduct
+                            .replace("[", "").replace("]", "");
+                    listForOutput.add(info);
+                    break;
                 }
             }
         }
+        Files.write(pathOutput, listForOutput);
     }
 
-//    Проверка всех исключающих ситуаций:
+    //    Проверка всех исключающих ситуаций:
 //    1. Сумма у покупателя не может быть отрицательной
 //    2. Имя покупателя не может быть пустой строкой
 //    3. Цена продукта не может быть отрицательной
 //    4. Название продукта не может быть пустой строкой
-    public static boolean checkAllSituation(List<Person> persons, List<Product> products) {
-        for (Person person : persons) {
-            for (Product product : products) {
-                return Objects.equals(person.getName(), "") || person.getAmountOfMoney() < 0
-                        || Objects.equals(product.getProductName(), "") || product.getPrice() < 0;
-            }
-        }
-        return false;
+    public static boolean validateParameters(Person person, Product product) {
+        return Objects.equals(person.getName(), "") || person.getAmountOfMoney() < 0
+                || Objects.equals(product.getProductName(), "") || product.getPrice() < 0;
     }
 }
 
