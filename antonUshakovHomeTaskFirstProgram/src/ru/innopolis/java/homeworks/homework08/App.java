@@ -1,4 +1,4 @@
-package ru.innopolis.java.homeworks.homework06;
+package ru.innopolis.java.homeworks.homework08;
 
 import java.util.ArrayList;
 import java.util.List;
