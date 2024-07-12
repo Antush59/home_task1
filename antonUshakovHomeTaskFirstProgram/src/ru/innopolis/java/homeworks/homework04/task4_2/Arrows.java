@@ -16,9 +16,7 @@ public class Arrows {
         int countSum = countArrow1 + countArrow2;
 
         System.out.println("Количество повторений стрел: " + countSum);
-
     }
-
     //    Метод, для подсчета встречающейся строки (arrow) в выражении (value)
     private static int countReplace(String value, String arrow) {
 
