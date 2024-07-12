@@ -37,7 +37,7 @@ public class Person {
         return productPackage;
     }
 
-    public void productPacket(String productName) {
+    public void addProductToPacket(String productName) {
         productPackage.add(productName);
     }
 
