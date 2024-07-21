@@ -1,0 +1,7 @@
+TOYOTA, Camry, 2015, 255, 120, 160, 25, 5
+Nissan, SkyLine GT-R, 1989, 320, 150, 170, 30
+Nissan, GTR r35, 2014, 540, 170, 120, 30
+Lamborghini, Aventador, 2020, 780, 180, 90, 15, 10
+Ferrari, 296 GTB, 2022, 830, 180, 90, 10, 5
+Ford, Mustang, 2021, 466, 110, 120, 15
+Aston Martin, DBS Volante, 2019, 725, 150, 100, 10, 12
