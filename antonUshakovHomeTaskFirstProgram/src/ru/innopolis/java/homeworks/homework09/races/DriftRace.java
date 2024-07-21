@@ -9,7 +9,7 @@ import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.List;
 
-public class DriftRace extends Race{
+public class DriftRace extends Race {
 
     public DriftRace(int raceLength, String raceRoute, int prizeMoney) {
         super(raceLength, raceRoute, prizeMoney);

@@ -3,11 +3,12 @@ package ru.innopolis.java.homeworks.homework09.cars;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class PerformanceCar extends Car{
+public class PerformanceCar extends Car {
 
     private String[] addOns;
 
-    public PerformanceCar() {}
+    public PerformanceCar() {
+    }
 
     public PerformanceCar(String carBrand, String carModel, int yearOfRelease,
                           int enginePower, int speedup, int clearance, int serviceLife) {
@@ -26,7 +27,7 @@ public class PerformanceCar extends Car{
 
     @Override
     public int getEnginePower() {
-        return (int) (enginePower *1.5);
+        return (int) (enginePower * 1.5);
     }
 
     @Override

@@ -2,11 +2,12 @@ package ru.innopolis.java.homeworks.homework09.cars;
 
 import java.util.Objects;
 
-public class ShowCar extends Car{
+public class ShowCar extends Car {
 
     private int stars;
 
-    public ShowCar() {}
+    public ShowCar() {
+    }
 
     public ShowCar(String carBrand, String carModel, int yearOfRelease, int enginePower, int speedup,
                    int clearance, int serviceLife, int stars) {
@@ -29,6 +30,7 @@ public class ShowCar extends Car{
         if (!super.equals(o)) return false;
         return stars == showCar.stars;
     }
+
     @Override
     public int hashCode() {
 

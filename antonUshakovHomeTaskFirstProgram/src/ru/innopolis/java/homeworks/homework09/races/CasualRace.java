@@ -22,7 +22,7 @@ public class CasualRace extends Race {
 
             if (listCars.get(i).getEnginePower() + listCars.get(i).getSpeedup() + listCars.get(i).getClearance() >=
                     listCars.get(i + 1).getEnginePower() + listCars.get(i + 1).getSpeedup() +
-                    listCars.get(i + 1).getClearance()) {
+                            listCars.get(i + 1).getClearance()) {
                 carWinner = listCars.get(i);
             } else {
                 carWinner = listCars.get(i + 1);
@@ -33,7 +33,7 @@ public class CasualRace extends Race {
             ((ShowCar) carWinner).setStars(((ShowCar) carWinner).getStars());
         }
 
-        String raceFinal =  "На гонке: " + this + "\n" + "Победу одержала машина: " + carWinner + "\n";
+        String raceFinal = "На гонке: " + this + "\n" + "Победу одержала машина: " + carWinner + "\n";
         Files.writeString(pathOut, raceFinal, StandardOpenOption.APPEND);
     }
 

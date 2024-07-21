@@ -9,10 +9,13 @@ import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.List;
 
-public class DragRace extends Race {
+public class CircuitRace extends Race {
 
-    public DragRace(int raceLength, String raceRoute, int prizeMoney) {
+    private int laps;
+
+    public CircuitRace(int raceLength, String raceRoute, int prizeMoney, int laps) {
         super(raceLength, raceRoute, prizeMoney);
+        this.laps = laps;
     }
 
     @Override
@@ -36,10 +39,22 @@ public class DragRace extends Race {
         Files.writeString(pathOut, raceFinal, StandardOpenOption.APPEND);
     }
 
+    public CircuitRace() {
+    }
+
+    public int getLaps() {
+        return laps;
+    }
+
+    public void setLaps(int laps) {
+        this.laps = laps;
+    }
+
     @Override
     public String toString() {
-        return "DragRace{" +
-                "raceLength=" + raceLength +
+        return "CircuitRace{" +
+                "laps=" + laps +
+                ", raceLength=" + raceLength +
                 ", raceRoute='" + raceRoute + '\'' +
                 ", prizeMoney=" + prizeMoney +
                 "} ";

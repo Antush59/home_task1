@@ -14,7 +14,8 @@ public class Race {
     protected int prizeMoney;
     protected List<Car> listCars;
 
-    public Race(){}
+    public Race() {
+    }
 
     public Race(int raceLength, String raceRoute, int prizeMoney) {
         this.raceLength = raceLength;
@@ -23,7 +24,8 @@ public class Race {
 
     }
 
-    public void choosingWinner(List<Car> listCars, Path pathOut) throws IOException {}
+    public void choosingWinner(List<Car> listCars, Path pathOut) throws IOException {
+    }
 
     public int getRaceLength() {
         return raceLength;

@@ -12,7 +12,8 @@ public class Car {
     protected int clearance;
     protected int serviceLife;
 
-    public Car() {}
+    public Car() {
+    }
 
     public Car(String carBrand, String carModel, int yearOfRelease, int enginePower,
                int speedup, int clearance, int serviceLife) {

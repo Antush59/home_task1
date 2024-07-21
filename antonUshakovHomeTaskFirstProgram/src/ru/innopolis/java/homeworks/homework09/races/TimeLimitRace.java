@@ -9,10 +9,13 @@ import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.List;
 
-public class DragRace extends Race {
+public class TimeLimitRace extends Race {
 
-    public DragRace(int raceLength, String raceRoute, int prizeMoney) {
+    private int goldTime;
+
+    public TimeLimitRace(int raceLength, String raceRoute, int prizeMoney, int goldTime) {
         super(raceLength, raceRoute, prizeMoney);
+        this.goldTime = goldTime;
     }
 
     @Override
@@ -20,8 +23,9 @@ public class DragRace extends Race {
         Car carWinner = new Car();
         for (int i = 0; i < listCars.size() - 1; i++) {
 
-            if (listCars.get(i).getEnginePower() + listCars.get(i).getSpeedup() >=
-                    listCars.get(i + 1).getEnginePower() + listCars.get(i + 1).getSpeedup()) {
+            if (listCars.get(i).getEnginePower() + listCars.get(i).getSpeedup() + listCars.get(i).getClearance() >=
+                    listCars.get(i + 1).getEnginePower() + listCars.get(i + 1).getSpeedup() +
+                            listCars.get(i + 1).getClearance()) {
                 carWinner = listCars.get(i);
             } else {
                 carWinner = listCars.get(i + 1);
@@ -36,10 +40,22 @@ public class DragRace extends Race {
         Files.writeString(pathOut, raceFinal, StandardOpenOption.APPEND);
     }
 
+    public TimeLimitRace() {
+    }
+
+    public int getGoldTime() {
+        return goldTime;
+    }
+
+    public void setGoldTime(int goldTime) {
+        this.goldTime = goldTime;
+    }
+
     @Override
     public String toString() {
-        return "DragRace{" +
-                "raceLength=" + raceLength +
+        return "TimeLimitRace{" +
+                "goldTime=" + goldTime +
+                ", raceLength=" + raceLength +
                 ", raceRoute='" + raceRoute + '\'' +
                 ", prizeMoney=" + prizeMoney +
                 "} ";
