@@ -1,9 +1,5 @@
 package ru.innopolis.java.homeworks.homework11;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.function.Predicate;
-
 public class Car {
     private final String numberCar;
     private final String modelCar;
