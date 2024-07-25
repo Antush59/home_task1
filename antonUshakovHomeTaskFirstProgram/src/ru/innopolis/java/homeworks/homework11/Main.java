@@ -60,7 +60,7 @@ public class Main {
 
 //Номера   всех   автомобилей,   имеющих   заданный   в   переменной   цветcolorToFind или нулевой пробег mileageToFind.
     private static void sortingByColorAndMileage(List<Car> carList) {
-        System.out.println("\nВведите цвет и пробег машины через запятую для фильтрации списка:");
+        System.out.println("\n\nВведите цвет и пробег машины через запятую для фильтрации списка:");
         Scanner scanner = new Scanner(System.in);
         String[] value = scanner.nextLine().split(", ");
         String colorToFind = value[0];
