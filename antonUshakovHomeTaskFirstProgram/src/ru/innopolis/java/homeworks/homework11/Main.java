@@ -6,37 +6,54 @@ public class Main {
     public static void main(String[] args) {
 
         List<Car> carList = new ArrayList<>();
+        String colorToFind;
+        int mileageToFind;
+        int n;
+        int m;
+        String modelToFind;
+        String modelToFind2;
+        Scanner scanner = new Scanner(System.in);
 
         addCar(carList);
 
+        String[] value = scanner.nextLine().split(", ");
+        colorToFind = value[0];
+        mileageToFind = Integer.parseInt(value[1].replaceAll("[^0-9]", ""));
+
+        String[] valueNM = scanner.nextLine().split(", ");
+        n = Integer.parseInt(valueNM[0].replaceAll("[^0-9]", ""));
+        m = Integer.parseInt(valueNM[1].replaceAll("[^0-9]", ""));
+
+        modelToFind = addModelToFind();
+        modelToFind2 = addModelToFind();
+
         printAll(carList);
 
-        sortingByColorAndMileage(carList);
+        sortingByColorAndMileage(carList, colorToFind, mileageToFind);
 
-        countUniqueCars(carList);
+        countUniqueCars(carList, n, m);
 
         colorOfCheapestCar(carList);
 
-        averageCostOfCar(carList);
+        averageCostOfCar(carList, modelToFind);
+
+        averageCostOfCar(carList, modelToFind2);
 
     }
 
     //Средняя стоимость искомой модели
-    private static void averageCostOfCar(List<Car> carList) {
-        System.out.println("\nВведите модель автомобилей для рассчета средней стоимости в списке: ");
-        Scanner scanner = new Scanner(System.in);
-        String modelToFind = scanner.nextLine();
+    private static void averageCostOfCar(List<Car> carList, String modelToFind) {
         IntSummaryStatistics intSummaryStatistics = carList.stream()
                 .filter(o -> Objects.equals(o.getModelCar(), modelToFind))
                 .mapToInt(Car::getCostCar)
                 .summaryStatistics();
-        System.out.print("\nСредняя стоимость модели " + modelToFind + ": ");
+        System.out.print("Средняя стоимость модели " + modelToFind + ": ");
         System.out.println(intSummaryStatistics.getAverage());
     }
 
     //Вывод цвета автомобиля с минимальной стоимостью
     private static void colorOfCheapestCar(List<Car> carList) {
-        System.out.print("\nЦвет автомобиля с минимальной стоимостью: ");
+        System.out.print("Цвет автомобиля с минимальной стоимостью: ");
         carList.stream()
                 .min(Comparator.comparing(Car::getCostCar))
                 .stream()
@@ -45,27 +62,16 @@ public class Main {
     }
 
     //Количество уникальных моделей в ценовом диапазоне от n до m тыс.
-    private static void countUniqueCars(List<Car> carList) {
-        System.out.println("\nВведите диапазон цен от и до через запятую через запятую для фильтрации списка:");
-        Scanner scanner = new Scanner(System.in);
-        String[] value = scanner.nextLine().split(", ");
-        int n = Integer.parseInt(value[0].replaceAll("[^0-9]", ""));
-        int m = Integer.parseInt(value[1].replaceAll("[^0-9]", ""));
-
-        System.out.println("\nУникальные автомобили: ");
+    private static void countUniqueCars(List<Car> carList, int n, int m) {
+        System.out.print("Уникальные автомобили: ");
         long count = carList.stream()
                 .filter(o -> o.getCostCar() >= n && o.getCostCar() <= m)
                 .count();
-        System.out.println(count + " шт.\n");
+        System.out.println(count + " шт.");
     }
 
-    //Номера   всех   автомобилей,   имеющих   заданный   в   переменной   цветcolorToFind или нулевой пробег mileageToFind.
-    private static void sortingByColorAndMileage(List<Car> carList) {
-        System.out.println("\n\nВведите цвет и пробег машины через запятую для фильтрации списка:");
-        Scanner scanner = new Scanner(System.in);
-        String[] value = scanner.nextLine().split(", ");
-        String colorToFind = value[0];
-        int mileageToFind = Integer.parseInt(value[1].replaceAll("[^0-9]", ""));
+    //Номера   всех   автомобилей,   имеющих   заданный   в   переменной   цвет colorToFind или нулевой пробег mileageToFind.
+    private static void sortingByColorAndMileage(List<Car> carList, String colorToFind, int mileageToFind) {
         System.out.print("\nНомера автомобилей по цвету или пробегу: ");
         carList.stream()
                 .filter(o -> Objects.equals(o.getColorCar(), colorToFind) ||
@@ -73,13 +79,13 @@ public class Main {
                 .map(Car::getNumberCar)
                 .map(o -> o + " ")
                 .forEach(System.out::print);
+        System.out.println();
     }
 
     //Вывод всех автомобилей в базе
     private static void printAll(List<Car> carList) {
-        System.out.println("\nАвтомобили в базе:\n[НОМЕР_АВТОМОБИЛЯ][МОДЕЛЬ][ЦВЕТ][ПРОБЕГ][ЦЕНА]");
+        System.out.println("Автомобили в базе:\nNumber  Model  Color Mileage Cost");
         carList.forEach(System.out::println);
-        System.out.println();
     }
 
     //Ввод автомобилей с консоли
@@ -87,7 +93,7 @@ public class Main {
         while (true) {
             Scanner scanner = new Scanner(System.in);
             String value = scanner.nextLine();
-            if (Objects.equals(value, "END")) {
+            if (Objects.equals(value, "")) {
                 break;
             } else {
                 String[] arraysCar = value.split("\\|");
@@ -96,5 +102,10 @@ public class Main {
                 carList.add(car);
             }
         }
+    }
+
+    private static String addModelToFind() {
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextLine();
     }
 }
