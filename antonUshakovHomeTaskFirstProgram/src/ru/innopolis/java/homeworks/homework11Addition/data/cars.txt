@@ -9,8 +9,3 @@ p146op|BMW|White|271000|850000
 u893ii|Toyota|Purple|210900|440000
 l097df|Toyota|Black|108000|780000
 y876wd|Toyota|Black|160000|1000000
-
-Black, 0L
-700_000L, 800_000L
-Toyota
-Volvo
