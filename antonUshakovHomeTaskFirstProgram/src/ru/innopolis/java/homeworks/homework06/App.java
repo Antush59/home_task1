@@ -66,6 +66,7 @@ public class App {
 
     //    Ввод с консоли данных о покупателе и товаре. Поиск их в списке, вызов метода checkPriceAndMoney, добавление
     //    в корзину покупателя товар, который подошел
+
     private static void inputPersonAndProducts(List<Person> personList, List<Product> productList) {
         while (true) {
             Scanner sc = new Scanner(System.in);
@@ -83,6 +84,7 @@ public class App {
                     if (Objects.equals(person.getName(), personString)) {
                         per = person;
                         break;
+
                     }
                 }
 
@@ -134,6 +136,6 @@ public class App {
             System.out.println("Стоимость продукта не может быть отрицательным числом");
             return false;
         } else return true;
+
     }
 }
-
