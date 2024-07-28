@@ -38,7 +38,7 @@ public class App {
                 }
             }
             if (productList.isEmpty()) {
-                System.out.println("Список, введите корректные данные: ");
+                System.out.println("Список пуст, введите корректные данные: ");
             } else {
                 break;
             }
