@@ -123,7 +123,7 @@ public class App {
             return true;
         }
     }
-    
+
     //    Проверка данных Product для добавления объекта
     private static boolean checkDataProduct(String stringProduct) {
         String[] arrayProduct = stringProduct.split(" = ");
