@@ -8,30 +8,29 @@ public class Television {
     private String companyName;
     private boolean tvIsOn;
     private Integer diagonalSize;
-    private Integer numberChanel;
-    private Integer maxVolume;
-    private List<Chanel> chanelList;
+    private Integer numberChannel;
+    private Integer volume;
+    private final Integer MIN_VOLUME = 20;
+    private final Integer MAX_VOLUME = 80;
+    private final Integer MIN_CHANNEL = 0;
+    private List<Channel> channelList;
 
-    public Television(String companyName, int diagonalSize, List<Chanel> chanelList) {
+    public Television(String companyName, int diagonalSize, List<Channel> channelList) {
         this.companyName = companyName;
         this.diagonalSize = diagonalSize;
-        this.chanelList = chanelList;
+        this.channelList = channelList;
     }
 
     //Включение телевизора.
-    public void pushPowerButton(int pwButton) {
-        if (pwButton == 1) {
-            tvIsOn = true;
-        } else {
-            tvIsOn = false;
-        }
+    public void pushPowerButton(boolean pwButton) {
+        tvIsOn = pwButton;
     }
 
     //Выбор канала от 1 до 400. Исключен выбор канала, если телевизор выключен.
-    //Исключен выбор канала больше 400  и ниже 0.
-    public boolean choiceNumberChanel(Integer numberChanel, int countChanel) {
-        this.numberChanel = numberChanel;
-        if (numberChanel <= countChanel && numberChanel > 0) {
+    //Исключен выбор канала больше установленного количества каналов  и ниже 0.
+    public boolean setChannel(Integer numberChanel, int countChanel) {
+        if (numberChanel <= countChanel && numberChanel > MIN_CHANNEL) {
+            this.numberChannel = numberChanel;
             return true;
         } else {
             System.out.println("Выберите канал от 1 до " + countChanel);
@@ -39,10 +38,10 @@ public class Television {
         }
     }
 
-    //    Исключаем из выбора громкости уровень ниже 0 и выше 100
-    public boolean choiceVolume(Integer volume) {
-        this.maxVolume = volume;
-        if (volume <= 80 && volume >= 20) {
+    //    Исключаем из выбора громкости уровень ниже 20 и выше 80
+    public boolean setVolume(Integer volume) {
+        if (volume <= MAX_VOLUME && volume >= MIN_VOLUME) {
+            this.volume = volume;
             return true;
         } else {
             System.out.println("Выберите громкость в дапазоне от 20 до 80");
@@ -50,8 +49,8 @@ public class Television {
         }
     }
 
-    public List<Chanel> getChanelList() {
-        return chanelList;
+    public List<Channel> getChannelList() {
+        return channelList;
     }
 
     public String getCompanyName() {
@@ -66,12 +65,12 @@ public class Television {
         return diagonalSize;
     }
 
-    public Integer getNumberChanel() {
-        return numberChanel;
+    public Integer getNumberChannel() {
+        return numberChannel;
     }
 
-    public Integer getMaxVolume() {
-        return maxVolume;
+    public Integer getVolume() {
+        return volume;
     }
 
     @Override
@@ -80,8 +79,8 @@ public class Television {
                 "companyName='" + companyName + '\'' +
                 ", diagonalSize=" + diagonalSize +
                 ", tvIsOn=" + tvIsOn +
-                ", numberChanel=" + numberChanel +
-                ", maxVolume=" + maxVolume +
+                ", numberChannel=" + numberChannel +
+                ", maxVolume=" + volume +
                 '}';
     }
 
@@ -90,23 +89,23 @@ public class Television {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Television that = (Television) o;
-        return tvIsOn == that.tvIsOn && Objects.equals(companyName, that.companyName) && Objects.equals(diagonalSize, that.diagonalSize) && Objects.equals(numberChanel, that.numberChanel) && Objects.equals(maxVolume, that.maxVolume);
+        return tvIsOn == that.tvIsOn && Objects.equals(companyName, that.companyName) && Objects.equals(diagonalSize, that.diagonalSize) && Objects.equals(numberChannel, that.numberChannel) && Objects.equals(volume, that.volume);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(companyName, tvIsOn, diagonalSize, numberChanel, maxVolume);
+        return Objects.hash(companyName, tvIsOn, diagonalSize, numberChannel, volume);
     }
 
     public void printTV(Television television) {
         if (television.isTvIsOn()) {
             System.out.println("\n" + "Информация о телевизоре:");
             System.out.println("Телевизор компании " + television.getCompanyName() + " с диагональю " + television.getDiagonalSize()
-                    + " включен, " + " выставлена громкость " + television.getMaxVolume() + "%, " + "включен " + television.getNumberChanel() + "канал");
-            for (Chanel chanel : television.getChanelList()) {
-                if (Objects.equals(numberChanel, chanel.getNumber())) {
+                    + " включен, " + " выставлена громкость " + television.getVolume() + "%, " + "включен " + television.getNumberChannel() + "канал");
+            for (Channel channel : television.getChannelList()) {
+                if (Objects.equals(numberChannel, channel.getNumber())) {
                     System.out.println("О канале:");
-                    System.out.println(chanel);
+                    System.out.println(channel);
                 }
             }
         } else {

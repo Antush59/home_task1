@@ -8,26 +8,26 @@ public class App {
     public static void main(String[] args) {
 
         List<Television> televisions = new ArrayList<>();
-        List<Chanel> chanelList = new ArrayList<>();
+        List<Channel> channelList = new ArrayList<>();
 
-        chanelList.add(new Chanel("Первый канал", 1, new TelevisionProgram("Голос", 7.4, 123000)));
-        chanelList.add(new Chanel("Россия", 2, new TelevisionProgram("Сто к одному", 5.3, 4500)));
-        chanelList.add(new Chanel("НТВ", 3, new TelevisionProgram("Квартирный вопрос", 6.2, 71000)));
-        chanelList.add(new Chanel("СТС", 4, new TelevisionProgram("Три Кота", 6.8, 121000)));
-        chanelList.add(new Chanel("Пятница", 5, new TelevisionProgram("Беремена в 16", 9.8, 754320)));
-        chanelList.add(new Chanel("ТНТ", 6, new TelevisionProgram("Импровизация", 7.7, 860000)));
-        chanelList.add(new Chanel("Спас ТВ", 7, new TelevisionProgram("В поисках Бога", 6.4, 87000)));
+        channelList.add(new Channel("Первый канал", 1, new TelevisionProgram("Голос", 7.4, 123000)));
+        channelList.add(new Channel("Россия", 2, new TelevisionProgram("Сто к одному", 5.3, 4500)));
+        channelList.add(new Channel("НТВ", 3, new TelevisionProgram("Квартирный вопрос", 6.2, 71000)));
+        channelList.add(new Channel("СТС", 4, new TelevisionProgram("Три Кота", 6.8, 121000)));
+        channelList.add(new Channel("Пятница", 5, new TelevisionProgram("Беремена в 16", 9.8, 754320)));
+        channelList.add(new Channel("ТНТ", 6, new TelevisionProgram("Импровизация", 7.7, 860000)));
+        channelList.add(new Channel("Спас ТВ", 7, new TelevisionProgram("В поисках Бога", 6.4, 87000)));
 
-        functionTV(new Television("Samsung", 105, chanelList), televisions);
-        functionTV(new Television("SONY", 115, chanelList), televisions);
-        functionTV(new Television("Philips", 102, chanelList), televisions);
-//        functionTV(new Television("LG", 120, chanelList), televisions);
-//        functionTV(new Television("Xiaomi", 100, chanelList), televisions);
-//        functionTV(new Television("TOSHIBA", 115, chanelList), televisions);
-//        functionTV(new Television("Горизонт", 50, chanelList), televisions);
-//        functionTV(new Television("Hyundai", 55, chanelList), televisions);
-//        functionTV(new Television("Digma", 75, chanelList), televisions);
-//        functionTV(new Television("BBK", 150, chanelList), televisions);
+        functionTV(new Television("Samsung", 105, channelList), televisions);
+        functionTV(new Television("SONY", 115, channelList), televisions);
+        functionTV(new Television("Philips", 102, channelList), televisions);
+        functionTV(new Television("LG", 120, channelList), televisions);
+        functionTV(new Television("Xiaomi", 100, channelList), televisions);
+        functionTV(new Television("TOSHIBA", 115, channelList), televisions);
+        functionTV(new Television("Горизонт", 50, channelList), televisions);
+        functionTV(new Television("Hyundai", 55, channelList), televisions);
+        functionTV(new Television("Digma", 75, channelList), televisions);
+        functionTV(new Television("BBK", 150, channelList), televisions);
 
         for (Television television : televisions) {
             television.printTV(television);
@@ -37,27 +37,27 @@ public class App {
 
     //    вызов методов у объекта класса
     public static void functionTV(Television television, List<Television> televisions) {
-        ternOn(television);
+        turnOn(television);
         settingVolume(television);
-        ternOnChannel(television);
+        turnOnChannel(television);
         televisions.add(television);
     }
 
     // Включение телевизора
-    private static void ternOn(Television television) {
+    private static void turnOn(Television television) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Для включения телевизора напишите 1");
-        television.pushPowerButton(scanner.nextInt());
+        System.out.println("Для включения телевизора напишите: true");
+        television.pushPowerButton(scanner.nextBoolean());
     }
 
     //Выбор канала и вывод данных канала в консоль
-    private static void ternOnChannel(Television television) {
+    private static void turnOnChannel(Television television) {
         Scanner scanner = new Scanner(System.in);
         if (television.isTvIsOn()) {
             System.out.println("Выберите канал телепередачи:");
             while (true) {
-                if (television.choiceNumberChanel(scanner.nextInt(), television.getChanelList().size())) {
+                if (television.setChannel(scanner.nextInt(), television.getChannelList().size())) {
                     break;
                 }
             }
@@ -72,7 +72,7 @@ public class App {
         if (television.isTvIsOn()) {
             while (true) {
                 System.out.println("Выберите громкость телевизора:");
-                if (television.choiceVolume(scanner.nextInt())) break;
+                if (television.setVolume(scanner.nextInt())) break;
             }
         } else {
             System.out.println("Компьютер выключен, выбор громкости не возможен!");

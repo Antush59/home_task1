@@ -4,9 +4,9 @@ import java.util.Objects;
 
 public class TelevisionProgram {
 
-    private String programName;
+    private final String programName;
     private Double rating;
-    private Integer numberOfViewers;
+    private final Integer numberOfViewers;
 
     public TelevisionProgram(String programName, Double rating, Integer numberOfViewers) {
         this.programName = programName;

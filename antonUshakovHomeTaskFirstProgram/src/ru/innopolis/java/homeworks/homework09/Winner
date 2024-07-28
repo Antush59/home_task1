@@ -1,0 +1,4 @@
+На гонке: DriftRace{raceLength=1500, raceRoute='Стадион', prizeMoney=750000} 
+Победу одержала машина: ShowCar{stars=11} Car{carBrand='Lamborghini', carModel='Aventador', yearOfRelease=2020, enginePower=780, speedup=180, clearance=90, serviceLife=15}
+На гонке: DragRace{raceLength=402, raceRoute='Стадион', prizeMoney=1500000} 
+Победу одержала машина: PerformanceCar{addOns=null} Car{carBrand='Ford', carModel='Mustang', yearOfRelease=2021, enginePower=699, speedup=110, clearance=90, serviceLife=15}
