@@ -4,12 +4,12 @@ import java.util.Objects;
 
 public class Pair<T, K> {
 
-    private final T valueT;
-    private final K valueK;
+    private final T first;
+    private final K second;
 
     private Pair(T valueT, K valueK) {
-        this.valueT = valueT;
-        this.valueK = valueK;
+        this.first = valueT;
+        this.second = valueK;
     }
 
     public static <T, K> Pair<T, K> of(T valueT, K valueK) {
@@ -17,22 +17,22 @@ public class Pair<T, K> {
     }
 
     public T getFirst() {
-        return valueT;
+        return first;
     }
 
     public K getSecond() {
-        return valueK;
+        return second;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Pair<?, ?> pair)) return false;
-        return Objects.equals(valueT, pair.valueT) && Objects.equals(valueK, pair.valueK);
+        return Objects.equals(first, pair.first) && Objects.equals(second, pair.second);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(valueT, valueK);
+        return Objects.hash(first, second);
     }
 }
