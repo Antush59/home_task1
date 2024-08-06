@@ -1,4 +1,4 @@
-package ru.innopolis.java.homeworks.homework012;
+package ru.innopolis.java.homeworks.homework12;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -22,21 +22,14 @@ public class Person {
         this.dateOfBirth = dateOfBirth;
         this.phoneNumber = phoneNumber;
         this.gender = gender;
+        this.age  = calculateAgeByDateOfBirth(dateOfBirth);
     }
 
-    public Person(String surname, String name, String patronymic, String dateOfBirth, long phoneNumber) {
-        this.surname = surname;
-        this.name = name;
-        this.patronymic = patronymic;
-        this.dateOfBirth = dateOfBirth;
-        this.phoneNumber = phoneNumber;
-    }
-
-    private void SetAge() {
+    private int calculateAgeByDateOfBirth(String dateOfBirth) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         LocalDate date = LocalDate.parse(dateOfBirth, formatter);
         LocalDate today = LocalDate.now();
-        age = today.getYear() - date.getYear();
+        return today.getYear() - date.getYear();
     }
 
     public String getSurname() {

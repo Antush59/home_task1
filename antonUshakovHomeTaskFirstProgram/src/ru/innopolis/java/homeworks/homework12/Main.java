@@ -1,4 +1,4 @@
-package ru.innopolis.java.homeworks.homework012;
+package ru.innopolis.java.homeworks.homework12;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -31,7 +31,6 @@ public class Main {
                 }
             }
         }
-
 
         System.out.println(person);
     }
