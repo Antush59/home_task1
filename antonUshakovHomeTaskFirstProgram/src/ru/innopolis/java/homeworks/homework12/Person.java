@@ -6,13 +6,13 @@ import java.util.Objects;
 
 public class Person {
 
-    private  String surname;
-    private  String name;
-    private  String patronymic;
-    private  String dateOfBirth;
-    private  long phoneNumber;
-    private  char gender;
-    private  int age;
+    private final String surname;
+    private final String name;
+    private final String patronymic;
+    private final String dateOfBirth;
+    private final long phoneNumber;
+    private final char gender;
+    private final int age;
 
     public Person(String surname, String name, String patronymic, String dateOfBirth,
                   long phoneNumber, char gender) {
