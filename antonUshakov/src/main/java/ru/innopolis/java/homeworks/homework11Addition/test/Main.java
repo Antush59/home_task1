@@ -13,9 +13,9 @@ public class Main {
 
         CarsRepository carsRepository = new CarsRepositoryImpl();
 
-        Path pathInput = Path.of("antonUshakovHomeTaskFirstProgram/src/ru/" +
+        Path pathInput = Path.of("antonUshakov/src/ru/" +
                 "innopolis/java/homeworks/homework11Addition/data/cars.txt");
-        Path pathOutput = Path.of("antonUshakovHomeTaskFirstProgram/src/ru/" +
+        Path pathOutput = Path.of("antonUshakov/src/ru/" +
                 "innopolis/java/homeworks/homework11Addition/data/resultCars.txt");
 
         String colorToFind;

@@ -17,9 +17,9 @@ public class App {
         List<Product> productList = new ArrayList<>();
         List<Person> personList = new ArrayList<>();
 
-        Path pathInput = Path.of("antonUshakovHomeTaskFirstProgram/src/ru/" +
+        Path pathInput = Path.of("antonUshakov/src/ru/" +
                 "innopolis/java/homeworks/homework08/Input.txt");
-        Path pathOutput = Path.of("antonUshakovHomeTaskFirstProgram/src/ru/" +
+        Path pathOutput = Path.of("antonUshakov/src/ru/" +
                 "innopolis/java/homeworks/homework08/Output.txt");
         List<String> strings = Files.readAllLines(pathInput, StandardCharsets.UTF_8);
         List<String> listForOutput = new ArrayList<>();

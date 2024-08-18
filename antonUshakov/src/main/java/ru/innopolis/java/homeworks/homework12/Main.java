@@ -79,7 +79,7 @@ public class Main {
                 String keyPersonMap = entry.getKey();
                 List<Person> personList = entry.getValue();
 
-                Path path = Path.of("antonUshakovHomeTaskFirstProgram/src/ru/innopolis/java/homeworks/homework12/" +
+                Path path = Path.of("antonUshakov/src/ru/innopolis/java/homeworks/homework12/" +
                                     "resources/" + keyPersonMap + "(a).txt");
                 Files.write(path, personList.stream().map(Person::toString).toList(), StandardOpenOption.APPEND,
                         StandardOpenOption.CREATE);
