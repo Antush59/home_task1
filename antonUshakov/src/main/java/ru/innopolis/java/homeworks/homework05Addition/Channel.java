@@ -1,14 +1,15 @@
 package ru.innopolis.java.homeworks.homework05Addition;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Channel {
 
     private final String nameChannel;
     private final Integer number;
-    private TelevisionProgram listPrograms;
+    private List<TelevisionProgram> listPrograms;
 
-    public Channel(String nameChannel, Integer number, TelevisionProgram listPrograms) {
+    public Channel(String nameChannel, Integer number, List<TelevisionProgram> listPrograms) {
         this.nameChannel = nameChannel;
         this.number = number;
         this.listPrograms = listPrograms;
@@ -22,7 +23,7 @@ public class Channel {
         return number;
     }
 
-    public TelevisionProgram getPrograms() {
+    public List<TelevisionProgram> getPrograms() {
         return listPrograms;
     }
 

@@ -28,7 +28,7 @@ public class TelevisionProgram {
 
     @Override
     public String toString() {
-        return "Программа: " + programName +
+        return "Название: " + programName +
                 ", рейтинг программы: " + rating +
                 ", количество телезрителей: " + numberOfViewers;
     }
