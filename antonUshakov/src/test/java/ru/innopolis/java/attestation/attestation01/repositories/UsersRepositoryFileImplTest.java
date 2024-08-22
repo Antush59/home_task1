@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import ru.innopolis.java.attestation.attestation01.model.RegisteredUser;
 import ru.innopolis.java.attestation.attestation01.model.User;
 
 import java.io.IOException;
@@ -32,6 +31,8 @@ class UsersRepositoryFileImplTest {
         String fileNameTest = "home_task1/antonUshakov/src/test/resources/UsersFileTest.txt";
         UsersRepositoryFileImpl usersRepositoryFile = new UsersRepositoryFileImpl(dataValidator, Path.of(fileNameTest));
 
+        String id = "f5a8a3cb-4ac9-4b3b-8a65-c424e129b9d2";
+        String dateCreate = "2023-12-25T19:10:11.556";
         String login = "login12";
         String password = "pass1234";
         String surname = "surname";
@@ -55,7 +56,7 @@ class UsersRepositoryFileImplTest {
 
         String[] userAttributes = actualUser.split("\\|");
         assertEquals(10, userAttributes.length);
-        String id = userAttributes[0];
+        String createId = userAttributes[0];
         String createdDateTime = userAttributes[1];
         String createdLogin = userAttributes[2];
         String pass = userAttributes[3];
@@ -66,7 +67,7 @@ class UsersRepositoryFileImplTest {
         String createdAge = userAttributes[8];
         String employee = userAttributes[9];
 
-        assertNotNull(id);
+        assertNotNull(createId);
 
         assertNotNull(createdDateTime);
         LocalDateTime created = LocalDateTime.parse(createdDateTime);
@@ -100,7 +101,7 @@ class UsersRepositoryFileImplTest {
         //GIVEN
         String byId = "3b2b26ca-e3f5-4096-b7be-8361cb2d9b32";
         //WHEN
-        RegisteredUser user = usersRepositoryFile.findById(byId);
+        User user = usersRepositoryFile.findById(byId);
         //THEN
         assertNotNull(user);
 
@@ -133,7 +134,7 @@ class UsersRepositoryFileImplTest {
         //GIVEN
 
         //WHEN
-        List<RegisteredUser> users = usersRepositoryFile.findAll();
+        List<User> users = usersRepositoryFile.findAll();
         //THEN
         assertEquals(Files.readAllLines(Path.of(fileName)).size(), users.size());
 
@@ -147,10 +148,10 @@ class UsersRepositoryFileImplTest {
     @Test
     void updateSuccess() throws IOException {
         //Given
-        RegisteredUser user = new RegisteredUser("f5a8a3cb-4ac9-4b3b-8a65-c424e129b9d2", "2023-12-25T19:10:11.556",
+        User user = new User("f5a8a3cb-4ac9-4b3b-8a65-c424e129b9d2", "2023-12-25T19:10:11.556",
                 "VityaAK", "tratatata", "tratatata", "Калашников",
                 "Виктор", "Сергеевич", "36", "false");
-        RegisteredUser creatUser = usersRepositoryFile.findById(user.getId());
+        User creatUser = usersRepositoryFile.findById(user.getId());
         //WHEN
         usersRepositoryFile.update(user);
         //THEN
@@ -193,7 +194,7 @@ class UsersRepositoryFileImplTest {
 
         String age = "25";
         //WHEN
-        List<RegisteredUser> users = usersRepositoryFile.findByAge(age);
+        List<User> users = usersRepositoryFile.findByAge(age);
         //THEN
         assertEquals(users.size(), 1);
         assertEquals(users.get(0).getId(), "f5a8a3cb-4ac9-4b3b-8a65-c424e129b9d2");
@@ -205,7 +206,7 @@ class UsersRepositoryFileImplTest {
 
         String isWorker = "false";
         //WHEN
-        List<RegisteredUser> users = usersRepositoryFile.findByIsWorker(isWorker);
+        List<User> users = usersRepositoryFile.findByIsWorker(isWorker);
         //THEN
         assertEquals(users.size(), 2);
 

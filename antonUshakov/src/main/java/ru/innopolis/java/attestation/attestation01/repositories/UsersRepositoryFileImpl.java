@@ -1,6 +1,5 @@
 package ru.innopolis.java.attestation.attestation01.repositories;
 
-import ru.innopolis.java.attestation.attestation01.model.RegisteredUser;
 import ru.innopolis.java.attestation.attestation01.model.User;
 
 import java.io.IOException;
@@ -27,15 +26,15 @@ public class UsersRepositoryFileImpl implements UsersRepository {
 
     @Override
     public void create(User user) {
-        RegisteredUser registeredUser;
+        User validateUser;
 
         if (validate(user, findAll())) {
-            registeredUser = new RegisteredUser(user);
+            validateUser = new User(user);
         } else {
             return;
         }
         try {
-            Files.write(pathLocation, List.of(registeredUser.toString()), StandardOpenOption.APPEND,
+            Files.write(pathLocation, List.of(validateUser.toString()), StandardOpenOption.APPEND,
                     StandardOpenOption.CREATE);
         } catch (IOException exception) {
             System.out.println(exception.getMessage());
@@ -43,10 +42,10 @@ public class UsersRepositoryFileImpl implements UsersRepository {
     }
 
     @Override
-    public RegisteredUser findById(String id) throws RuntimeException {
+    public User findById(String id) throws RuntimeException {
 
-        List<RegisteredUser> users = findAll();
-        for (RegisteredUser user : users) {
+        List<User> users = findAll();
+        for (User user : users) {
             if (Objects.equals(user.getId(), id)) {
                 return user;
             }
@@ -55,8 +54,8 @@ public class UsersRepositoryFileImpl implements UsersRepository {
     }
 
     @Override
-    public List<RegisteredUser> findAll() {
-        List<RegisteredUser> userList = new ArrayList<>();
+    public List<User> findAll() {
+        List<User> userList = new ArrayList<>();
         List<String> stringList = new ArrayList<>();
 
         try {
@@ -67,7 +66,7 @@ public class UsersRepositoryFileImpl implements UsersRepository {
 
         for (String s : stringList) {
             String[] stringArray = s.split("\\|");
-            RegisteredUser user = new RegisteredUser(stringArray[0], stringArray[1], stringArray[2], stringArray[3],
+            User user = new User(stringArray[0], stringArray[1], stringArray[2], stringArray[3],
                     stringArray[4], stringArray[5], stringArray[6], stringArray[7], stringArray[8], stringArray[9]);
             userList.add(user);
         }
@@ -75,10 +74,10 @@ public class UsersRepositoryFileImpl implements UsersRepository {
     }
 
     @Override
-    public void update(RegisteredUser user) {
+    public void update(User user) {
 
-        List<RegisteredUser> users = findAll();
-        Optional<RegisteredUser> userFromDb = users.stream()
+        List<User> users = findAll();
+        Optional<User> userFromDb = users.stream()
                 .filter(userFromDataBase -> userFromDataBase.getId().equals(user.getId()))
                 .findFirst();
 
@@ -88,8 +87,8 @@ public class UsersRepositoryFileImpl implements UsersRepository {
                     Добавлен новый Пользователь.""");
             users.add(user);
         } else {
-            RegisteredUser foundUser = userFromDb.get();
-            foundUser = new RegisteredUser(foundUser.getId(), foundUser.getDataCreate(), user.getLogin(),
+            User foundUser = userFromDb.get();
+            foundUser = new User(foundUser.getId(), foundUser.getDataCreate(), user.getLogin(),
                     user.getPassword(), user.getConfirmPassword(), user.getSurname(), user.getName(),
                     user.getPatronymic(), user.getAge(), user.isWorker());
             delete(foundUser.getId(), users);
@@ -100,23 +99,23 @@ public class UsersRepositoryFileImpl implements UsersRepository {
 
     @Override
     public void deleteById(String id) {
-        List<RegisteredUser> users = findAll();
-        RegisteredUser user =  findById(id);
+        List<User> users = findAll();
+        User user = findById(id);
         delete(user.getId(), users);
         writeOutFile(users);
     }
 
     @Override
-    public List<RegisteredUser> findByAge(String age) {
-        List<RegisteredUser> users = findAll();
+    public List<User> findByAge(String age) {
+        List<User> users = findAll();
         return users.stream()
                 .filter(user -> user.getAge().equals(age))
                 .toList();
     }
 
     @Override
-    public List<RegisteredUser> findByIsWorker(String isWorker) {
-        List<RegisteredUser> users = findAll();
+    public List<User> findByIsWorker(String isWorker) {
+        List<User> users = findAll();
         return users.stream()
                 .filter(user -> user.isWorker().equals(isWorker))
                 .toList();
@@ -124,12 +123,12 @@ public class UsersRepositoryFileImpl implements UsersRepository {
 
     @Override
     public void deleteAll() {
-        List<RegisteredUser> users = findAll();
+        List<User> users = findAll();
         users = new ArrayList<>();
         writeOutFile(users);
     }
 
-    private void writeOutFile(List<RegisteredUser> users) {
+    private void writeOutFile(List<User> users) {
         try {
             Files.write(pathLocation, users.stream().map(User::toString).toList(), StandardOpenOption.CREATE,
                     StandardOpenOption.TRUNCATE_EXISTING);
@@ -138,16 +137,16 @@ public class UsersRepositoryFileImpl implements UsersRepository {
         }
     }
 
-    private static void delete(String id, List<RegisteredUser> users) {
+    private static void delete(String id, List<User> users) {
         for (int i = 0; i < users.size(); i++) {
-            RegisteredUser user = users.get(i);
+            User user = users.get(i);
             if (user.getId().equals(id)) {
                 users.remove(user);
             }
         }
     }
 
-    private boolean validate(User user, List<RegisteredUser> registeredUsers) {
+    private boolean validate(User user, List<User> users) {
         try {
             dataValidator.validateLogin(user.getLogin());
             dataValidator.validatePassword(user.getPassword());
@@ -156,7 +155,7 @@ public class UsersRepositoryFileImpl implements UsersRepository {
             dataValidator.validateSurnameOrName(user.getSurname());
             dataValidator.validatePatronymic(user.getPatronymic());
             dataValidator.validateAge(user.getAge());
-            dataValidator.checkingTheLoginInTheList(user.getLogin(), registeredUsers);
+            dataValidator.checkingTheLoginInTheList(user.getLogin(), users);
             return true;
         } catch (RuntimeException exception) {
             System.out.println(exception.getMessage());

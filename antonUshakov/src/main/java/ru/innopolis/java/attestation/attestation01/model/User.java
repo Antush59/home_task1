@@ -1,20 +1,55 @@
 package ru.innopolis.java.attestation.attestation01.model;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.UUID;
 
 public class User {
 
-    private final String login;
-    private final String password;
-    private final String confirmPassword;
-    private final String surname;
-    private final String name;
-    private final String patronymic;
-    private final int age;
+    private String login;
+    private String password;
+    private String confirmPassword;
+    private String surname;
+    private String name;
+    private String patronymic;
+    private int age;
     private boolean isWorker = false;
 
-    public User(String login, String password, String confirmPassword, String surname, String name, String patronymic,
+    private String id;
+    private LocalDateTime dataCreate;
+
+    public User(String login, String password, String confirmPassword, String surname,
+                String name, String patronymic,
                 String age, String isWorker) {
+        this.login = login;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
+        this.surname = surname;
+        this.name = name;
+        this.patronymic = setPatronymic(patronymic);
+        this.age = setAge(age);
+        this.isWorker = setIsWorker(isWorker);
+    }
+
+    public User(User user) {
+        this.id = addId();
+        this.dataCreate = addDateOfCreation();
+        this.login = user.getLogin();
+        this.password = user.getPassword();
+        this.confirmPassword = user.getConfirmPassword();
+        this.surname = user.getSurname();
+        this.name = user.getName();
+        this.patronymic = user.getPatronymic();
+        this.age = Integer.parseInt(user.getAge());
+        this.isWorker = Boolean.parseBoolean(user.isWorker());
+
+    }
+
+    public User(String id, String dateCreate, String login, String password, String confirmPassword, String surname,
+                String name, String patronymic,
+                String age, String isWorker) {
+        this.id = id;
+        this.dataCreate = LocalDateTime.parse(dateCreate);
         this.login = login;
         this.password = password;
         this.confirmPassword = confirmPassword;
@@ -23,6 +58,14 @@ public class User {
         this.patronymic = setPatronymic(patronymic);
         this.age = (int) setAge(age);
         this.isWorker = setIsWorker(isWorker);
+    }
+
+    private String addId() {
+        return String.valueOf(UUID.randomUUID());
+    }
+
+    private LocalDateTime addDateOfCreation() {
+        return LocalDateTime.now();
     }
 
     private boolean setIsWorker(String isWorker) {
@@ -80,22 +123,28 @@ public class User {
 
     @Override
     public String toString() {
-        return login + "|" + password + "|" + confirmPassword + "|" + surname + "|" +
-                                                     name + "|" + patronymic + "|" + age + "|" + isWorker;
+        return id + "|" + dataCreate + "|" + login + "|" + password + "|" + confirmPassword + "|" + surname
+               + "|" + name + "|" + patronymic + "|" + age + "|" + isWorker;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getDataCreate() {
+        return String.valueOf(dataCreate);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof User user)) return false;
-        return age == user.age && isWorker == user.isWorker && Objects.equals(login, user.login) &&
-               Objects.equals(password, user.password) && Objects.equals(confirmPassword, user.confirmPassword) &&
-               Objects.equals(surname, user.surname) && Objects.equals(name, user.name) &&
-               Objects.equals(patronymic, user.patronymic);
+        if (!(o instanceof User that)) return false;
+        if (!super.equals(o)) return false;
+        return Objects.equals(id, that.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(login, password, confirmPassword, surname, name, patronymic, age, isWorker);
+        return Objects.hash(id);
     }
 }

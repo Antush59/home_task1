@@ -1,6 +1,6 @@
 package ru.innopolis.java.attestation.attestation01.repositories;
 
-import ru.innopolis.java.attestation.attestation01.model.RegisteredUser;
+import ru.innopolis.java.attestation.attestation01.model.User;
 
 import java.util.List;
 
@@ -18,5 +18,5 @@ public interface DataValidator {
 
     void validateAge(String age);
 
-    void checkingTheLoginInTheList(String login, List<RegisteredUser> registeredUsers);
+    void checkingTheLoginInTheList(String login, List<User> users);
 }

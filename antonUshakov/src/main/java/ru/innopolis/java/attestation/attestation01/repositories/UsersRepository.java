@@ -1,6 +1,5 @@
 package ru.innopolis.java.attestation.attestation01.repositories;
 
-import ru.innopolis.java.attestation.attestation01.model.RegisteredUser;
 import ru.innopolis.java.attestation.attestation01.model.User;
 
 import java.util.List;
@@ -11,15 +10,15 @@ public interface UsersRepository {
 
     User findById(String id);
 
-    List<RegisteredUser> findAll();
+    List<User> findAll();
 
-    void update(RegisteredUser user);
+    void update(User user);
 
     void deleteById(String id);
 
-    List<RegisteredUser> findByAge(String age);
+    List<User> findByAge(String age);
 
-    List<RegisteredUser> findByIsWorker(String age);
+    List<User> findByIsWorker(String age);
 
     void deleteAll();
 }

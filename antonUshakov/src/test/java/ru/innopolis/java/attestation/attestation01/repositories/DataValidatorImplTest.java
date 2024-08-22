@@ -3,7 +3,7 @@ package ru.innopolis.java.attestation.attestation01.repositories;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import ru.innopolis.java.attestation.attestation01.model.RegisteredUser;
+import ru.innopolis.java.attestation.attestation01.model.User;
 
 import java.util.List;
 
@@ -131,11 +131,11 @@ class DataValidatorImplTest {
     @Test
     void checkingTheLoginInTheListSuccess() {
         //GIVEN
-        RegisteredUser user = new RegisteredUser("f5a8a3cb-4ac9-4b3b-8a65-c424e129b9d2",
+        User user = new User("f5a8a3cb-4ac9-4b3b-8a65-c424e129b9d2",
                 "2023-12-25T19:10:11.556","Nagibator", "SonMomsFriend",
                 "SonMomsFriend", "Смирнов", "Евгений", "Васильевич",
                 "12", "false");
-        List<RegisteredUser> users = List.of(user);
+        List<User> users = List.of(user);
         String login = "Merantush";
         //WHEN//THEN
         assertDoesNotThrow(() -> dataValidator.checkingTheLoginInTheList(login, users));
@@ -144,15 +144,16 @@ class DataValidatorImplTest {
     @Test
     void checkingTheLoginInTheListFailed() {
         //GIVEN
-        RegisteredUser user = new RegisteredUser("f5a8a3cb-4ac9-4b3b-8a65-c424e129b9d2",
+        User user = new User("f5a8a3cb-4ac9-4b3b-8a65-c424e129b9d2",
                 "2023-12-25T19:10:11.556","Nagibator", "SonMomsFriend",
                 "SonMomsFriend", "Смирнов", "Евгений", "Васильевич",
                 "12", "false");
-        List<RegisteredUser> users = List.of(user);
+        List<User> users = List.of(user);
         String login = "Nagibator";
         String expectedMessage = "Такой логин уже есть!";
         //WHEN//THEN
-        Exception exception = assertThrows(RuntimeException.class, () -> dataValidator.checkingTheLoginInTheList(login, users));
+        Exception exception = assertThrows(RuntimeException.class, () -> dataValidator.checkingTheLoginInTheList(login,
+                users));
         assertTrue(exception.getMessage().contains(expectedMessage));
     }
 }
