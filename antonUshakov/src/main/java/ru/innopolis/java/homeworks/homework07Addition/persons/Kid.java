@@ -1,4 +1,6 @@
-package ru.innopolis.java.homeworks.homework07Addition;
+package ru.innopolis.java.homeworks.homework07Addition.persons;
+
+import ru.innopolis.java.homeworks.homework07Addition.products.Product;
 
 public class Kid extends Person {
 
@@ -6,9 +8,9 @@ public class Kid extends Person {
         super(name, amountOfMoney, age);
     }
 
-//    Проверка ребенка на возраст для возможности покупать продукеты
+//    Проверка ребенка на возраст для возможности покупать продукты
 //    покупать можно с 6 лет
-    public boolean checkingAge() {
+    public boolean canBy() {
         return getAge() >= 6;
     }
 
@@ -17,7 +19,7 @@ public class Kid extends Person {
         if (product.getAdultProduct()) {
             System.out.println("Товар не предназначен для детей!");
             return false;
-        } else if (!checkingAge()) {
+        } else if (!canBy()) {
             System.out.println("Ребенок моложе 6 лет не может покупать товары!");
             return false;
         } else if (getAmountOfMoney() < product.getProductPrice()) {

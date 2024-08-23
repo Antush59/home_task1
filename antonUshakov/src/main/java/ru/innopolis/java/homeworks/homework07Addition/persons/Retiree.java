@@ -1,6 +1,9 @@
-package ru.innopolis.java.homeworks.homework07Addition;
+package ru.innopolis.java.homeworks.homework07Addition.persons;
 
-public class Retiree extends Person{
+import ru.innopolis.java.homeworks.homework07Addition.products.DiscountProduct;
+import ru.innopolis.java.homeworks.homework07Addition.products.Product;
+
+public class Retiree extends Person {
 
     public Retiree(String name, int amountOfMoney, int age) {
         super(name, amountOfMoney, age);

@@ -1,4 +1,4 @@
-package ru.innopolis.java.homeworks.homework07Addition;
+package ru.innopolis.java.homeworks.homework07Addition.products;
 
 import java.time.LocalDate;
 import java.util.Objects;

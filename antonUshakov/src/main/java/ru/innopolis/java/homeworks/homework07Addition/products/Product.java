@@ -1,4 +1,4 @@
-package ru.innopolis.java.homeworks.homework07Addition;
+package ru.innopolis.java.homeworks.homework07Addition.products;
 
 import java.util.Objects;
 

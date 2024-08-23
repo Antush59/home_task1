@@ -1,9 +1,16 @@
 package ru.innopolis.java.homeworks.homework07Addition;
 
+import ru.innopolis.java.homeworks.homework07Addition.persons.Adult;
+import ru.innopolis.java.homeworks.homework07Addition.persons.Kid;
+import ru.innopolis.java.homeworks.homework07Addition.persons.Person;
+import ru.innopolis.java.homeworks.homework07Addition.persons.Retiree;
+import ru.innopolis.java.homeworks.homework07Addition.products.DiscountProduct;
+import ru.innopolis.java.homeworks.homework07Addition.products.Product;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static ru.innopolis.java.homeworks.homework07Addition.Person.validate;
+import static ru.innopolis.java.homeworks.homework07Addition.persons.Person.validate;
 
 
 public class App {
@@ -44,7 +51,7 @@ public class App {
     public static void enteringProducts(List<Product> products, List<DiscountProduct> discountProducts) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите данные продуктов в формате: \n" + "[Имя продукта] = [Цена продукта], " +
-                "[Скидка товара, если есть], [true-товар только для совершеннолетних или false-товара для всех]");
+                           "[Скидка товара, если есть], [true-товар только для совершеннолетних или false-товара для всех]");
         while (true) {
             System.out.println("Введите данные продуктов." + "\n" + "Для выхода напишите END");
             String rawProduct = scanner.nextLine();
@@ -77,7 +84,7 @@ public class App {
         Map<String, Person> mapPerson = new HashMap<>();
         Scanner scanner = new Scanner(System.in);
         System.out.println("\nВведите данные покупателя в виде: \n[Имя покупателя], " +
-                "[Кол-во денег у покупателя], [Возраст]");
+                           "[Кол-во денег у покупателя], [Возраст]");
         while (true) {
             System.out.println("Введите данные покупателя." + "\n" + "Для выхода напишите END");
             String list = scanner.nextLine();

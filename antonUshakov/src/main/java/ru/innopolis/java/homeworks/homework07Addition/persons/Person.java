@@ -1,4 +1,6 @@
-package ru.innopolis.java.homeworks.homework07Addition;
+package ru.innopolis.java.homeworks.homework07Addition.persons;
+
+import ru.innopolis.java.homeworks.homework07Addition.products.Product;
 
 import java.util.ArrayList;
 import java.util.List;
