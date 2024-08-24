@@ -1,5 +1,9 @@
 package ru.innopolis.java.homeworks.homework08;
 
+import ru.innopolis.java.homeworks.homework08.models.Person;
+import ru.innopolis.java.homeworks.homework08.models.Product;
+import ru.innopolis.java.homeworks.homework13.utils.DataHandling;
+
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -17,10 +21,10 @@ public class App {
         List<Product> productList = new ArrayList<>();
         List<Person> personList = new ArrayList<>();
 
-        Path pathInput = Path.of("antonUshakov/src/ru/" +
-                "innopolis/java/homeworks/homework08/Input.txt");
-        Path pathOutput = Path.of("antonUshakov/src/ru/" +
-                "innopolis/java/homeworks/homework08/Output.txt");
+        Path pathInput = Path.of("home_task1/antonUshakov/src/main/java/ru/innopolis/java/homeworks/homework08/" +
+                                 "resources/Input.txt");
+        Path pathOutput = Path.of("home_task1/antonUshakov/src/main/java/ru/innopolis/java/homeworks/homework08/" +
+                                  "resources/Output.txt");
         List<String> strings = Files.readAllLines(pathInput, StandardCharsets.UTF_8);
         List<String> listForOutput = new ArrayList<>();
 
@@ -115,10 +119,10 @@ public class App {
                 } else {
                     if (per.addProductToPackage(prod)) {
                         listForOutput.add("Покупатель " + per.getName() + " купил "
-                                + prod.getProductName() + "\n");
+                                          + prod.getProductName() + "\n");
                     } else {
                         listForOutput.add(per.getName() + " не может себе позволить "
-                                + prod.getProductName() + "\n");
+                                          + prod.getProductName() + "\n");
                     }
                 }
             }
@@ -127,11 +131,16 @@ public class App {
 
     //    Проверка данных Person для добавления объекта
     private static boolean checkDataPerson(String stringPerson, List<String> listForOutput) {
+        DataHandling dataHandling = new DataHandling();
         String[] arrayPerson = stringPerson.split(" = ");
-        if (Objects.equals(arrayPerson[0], "")) {
+        String personName = arrayPerson[0];
+        Integer money = dataHandling.validateCount(arrayPerson[1]);
+        if (money == null) {
+            return false;
+        } else if (Objects.equals(personName, "")) {
             listForOutput.add("Имя не может быть пустой строкой");
             return false;
-        } else if (Integer.parseInt(arrayPerson[1]) < 0) {
+        } else if (money < 0) {
             listForOutput.add("Деньги не могут быть отрицательными");
             return false;
         } else {
@@ -141,11 +150,17 @@ public class App {
 
     //    Проверка данных Product для добавления объекта
     private static boolean checkDataProduct(String stringProduct, List<String> listForOutput) {
+        DataHandling dataHandling = new DataHandling();
         String[] arrayProduct = stringProduct.split(" = ");
-        if (Objects.equals(arrayProduct[0], "")) {
+        String productName = arrayProduct[0];
+        Integer productPrice = dataHandling.validateCount(arrayProduct[1]);
+
+        if (productPrice == null) {
+            return false;
+        } else if (Objects.equals(productName, "")) {
             listForOutput.add("Название продукта неможет быть пустой строкой");
             return false;
-        } else if (Integer.parseInt(arrayProduct[1]) < 0) {
+        } else if (productPrice < 0) {
             listForOutput.add("Стоимость продукта не может быть отрицательным числом");
             return false;
         } else return true;
