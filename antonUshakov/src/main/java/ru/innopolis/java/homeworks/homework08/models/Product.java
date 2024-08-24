@@ -1,4 +1,4 @@
-package ru.innopolis.java.homeworks.homework08;
+package ru.innopolis.java.homeworks.homework08.models;
 
 import java.util.Objects;
 
