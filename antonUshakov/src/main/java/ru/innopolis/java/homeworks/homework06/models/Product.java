@@ -1,4 +1,4 @@
-package ru.innopolis.java.homeworks.homework06;
+package ru.innopolis.java.homeworks.homework06.models;
 
 import java.util.Objects;
 
@@ -15,6 +15,9 @@ public class Product {
     public Product(String[] value) {
         productName = value[0];
         price = Integer.parseInt(value[1]);
+    }
+
+    public Product() {
     }
 
     public String getProductName() {
