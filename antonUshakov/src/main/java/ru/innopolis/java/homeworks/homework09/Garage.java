@@ -40,5 +40,6 @@ public class Garage {
                 car.setClearance(car.getClearance() + Integer.parseInt(value));
             } else break;
         }
+        garageCarList.forEach(System.out::println);
     }
 }

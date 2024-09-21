@@ -15,8 +15,8 @@ import java.util.List;
 public class App {
     public static void main(String[] args) throws IOException {
 
-        Path pathInput = Path.of("antonUshakov/src/ru/innopolis/java/homeworks/homework09/inputData.txt");
-        Path pathWinner = Path.of("antonUshakov/src/ru/innopolis/java/homeworks/homework09/Winner");
+        Path pathInput = Path.of("home_task1/antonUshakov/src/main/java/ru/innopolis/java/homeworks/homework09/inputData.txt");
+        Path pathWinner = Path.of("home_task1/antonUshakov/src/main/java/ru/innopolis/java/homeworks/homework09/Winner");
         List<String> strings = Files.readAllLines(pathInput, StandardCharsets.UTF_8);
         List<Car> cars = new ArrayList<>();
         DragRace dragRace = new DragRace(402, "Стадион", 1500000);

@@ -11,15 +11,8 @@ public class PerformanceCar extends Car {
     }
 
     public PerformanceCar(String carBrand, String carModel, int yearOfRelease,
-                          int enginePower, int speedup, int clearance, int serviceLife) {
-        super(carBrand, carModel, yearOfRelease, enginePower, speedup, clearance, serviceLife);
-    }
-
-    public PerformanceCar(String[] stringCar) {
-        carBrand = stringCar[0];
-        carModel = stringCar[1];
-
-    }
+                          long enginePower, int speedup, int clearance, int serviceLife) {
+        super(carBrand, carModel, yearOfRelease, (int) (enginePower * 1.5), speedup, (int) (clearance * 0.75), serviceLife);    }
 
     public void setAddOns(String[] addOns) {
         this.addOns = addOns;
@@ -27,12 +20,12 @@ public class PerformanceCar extends Car {
 
     @Override
     public int getEnginePower() {
-        return (int) (enginePower * 1.5);
+        return enginePower;
     }
 
     @Override
     public int getClearance() {
-        return (int) (clearance * 0.75);
+        return clearance;
     }
 
     public String[] getAddOns() {
